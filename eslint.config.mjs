@@ -11,6 +11,12 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Note: Tailwind CSS v4 compatibility issues with eslint-plugin-tailwindcss
+      // We'll add custom Tailwind rules later when the plugin supports v4
+    },
+  },
 ];
 
 export default eslintConfig;
