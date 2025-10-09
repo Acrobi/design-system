@@ -51,5 +51,19 @@
     ],
     "usage": null,
     "props": {}
+  },
+  "icon": {
+    "name": "icon",
+    "dependencies": [
+      "react",
+      "@/lib/utils",
+      "@/src/lib/icon-metaphors",
+      "@/src/lib/icon-maps/lucide.map"
+    ],
+    "files": [
+      "src/components/ui/icon.tsx"
+    ],
+    "usage": null,
+    "props": {}
   }
 }

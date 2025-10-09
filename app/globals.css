@@ -45,6 +45,17 @@
 
 :root {
   --radius: 0.625rem;
+    /* Motion Primitives */
+    --duration-ultrafast: 60ms;
+    --duration-fast: 120ms;
+    --duration-normal: 240ms;
+    --duration-slow: 480ms;
+    --duration-ultraslow: 960ms;
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.5, 1.5, 0.5, 1);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
