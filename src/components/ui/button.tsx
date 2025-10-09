@@ -1,3 +1,8 @@
+/**
+ * @prop {variant} {enum} {default|destructive|outline|secondary|ghost|link} {default} - The visual style of the button.
+ * @prop {size} {enum} {default|sm|lg|icon} {default} - The size of the button.
+ * @prop {asChild} {boolean} {false} - Render as a child component.
+ */
 /** @usage
 <Button>
   <Mail className="mr-2 h-4 w-4" /> Login with Email

@@ -1,0 +1,43 @@
+{
+  "button": {
+    "name": "button",
+    "dependencies": [
+      "react",
+      "@radix-ui/react-slot",
+      "class-variance-authority",
+      "@/lib/utils"
+    ],
+    "files": [
+      "src/components/ui/button.tsx"
+    ],
+    "usage": "<Button>\n  <Mail className=\"mr-2 h-4 w-4\" /> Login with Email\n</Button>",
+    "props": {
+      "variant": {
+        "name": "variant",
+        "type": "enum",
+        "options": [
+          "default",
+          "destructive",
+          "outline",
+          "secondary",
+          "ghost",
+          "link"
+        ],
+        "defaultValue": "default",
+        "description": "The visual style of the button."
+      },
+      "size": {
+        "name": "size",
+        "type": "enum",
+        "options": [
+          "default",
+          "sm",
+          "lg",
+          "icon"
+        ],
+        "defaultValue": "default",
+        "description": "The size of the button."
+      }
+    }
+  }
+}

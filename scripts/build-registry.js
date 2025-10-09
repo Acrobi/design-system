@@ -1,22 +1,3 @@
-# This script should be executed in the root of the 'Acrobi-Design-System' repository.
-
-# 1. Add schema information to button.tsx using JSDoc comments.
-echo "Adding JSDoc schema to button.tsx..."
-# We use a temp file to prepend the comment block to the existing file.
-cat <<'EOL' > button.tsx.tmp
-/**
- * @prop {variant} {enum} {default|destructive|outline|secondary|ghost|link} {default} - The visual style of the button.
- * @prop {size} {enum} {default|sm|lg|icon} {default} - The size of the button.
- * @prop {asChild} {boolean} {false} - Render as a child component.
- */
-EOL
-cat ./src/components/ui/button.tsx >> button.tsx.tmp
-mv button.tsx.tmp ./src/components/ui/button.tsx
-echo "Schema added."
-
-# 2. Upgrade the registry builder script to parse JSDoc and generate the props schema.
-echo "Upgrading registry generation script to parse JSDoc props..."
-cat <<'EOL' > ./scripts/build-registry.js
 const fs = require("fs/promises")
 const path = require("path")
 
@@ -50,14 +31,14 @@ async function buildRegistry() {
     if (path.extname(file) === ".tsx") {
       const name = path.basename(file, ".tsx")
       const content = await fs.readFile(path.join(COMPONENTS_DIR, file), "utf-8")
-      
+
       const dependencies = (content.match(/from "([^"]+)"/g) || [])
         .map(line => line.slice(6, -1))
         .filter(dep => !dep.startsWith("."))
-        
+
       const usageMatch = content.match(/\/\*\* @usage([\s\S]*?)\*\//)
       const usage = usageMatch ? usageMatch[1].replace(/\n\s*\*\s?/g, "\n").trim() : null
-      
+
       const props = parseJSDoc(content)
 
       registry[name] = {
@@ -69,23 +50,10 @@ async function buildRegistry() {
       }
     }
   }
-  
+
   await fs.mkdir(path.dirname(REGISTRY_PATH), { recursive: true });
   await fs.writeFile(REGISTRY_PATH, JSON.stringify(registry, null, 2))
   console.log("✅ Component registry with schema built successfully!")
 }
 
 buildRegistry()
-EOL
-echo "Script upgraded."
-
-# 3. Re-build the project to generate the new, schema-rich registry.
-echo "Re-building the registry..."
-pnpm build
-
-# 4. Commit and push the changes to the remote GitHub repository.
-echo "Committing and pushing changes..."
-git add .
-git commit -m "feat(registry): add component prop schema generation"
-git push origin main
-echo "Push complete."
