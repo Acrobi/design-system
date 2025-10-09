@@ -6,7 +6,7 @@
   "author": "Brian Porter",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brian-porter/Acrobi-Design-System.git"
+    "url": "git+https://github.com/Acrobi/design-system.git"
   },
   "scripts": {
     "dev": "next dev --turbopack",
