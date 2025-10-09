@@ -1,8 +1,3 @@
-# This script should be executed in the root of the 'Acrobi-Design-System' repository.
-
-# 1. Create the new 'card.tsx' component with its JSDoc schema.
-echo "Creating new component: card.tsx with schema..."
-cat <<'EOL' > ./src/components/ui/card.tsx
 /**
  * @prop {className} {string} {} - Additional CSS classes for custom styling.
  */
@@ -75,16 +70,3 @@ const CardFooter = React.forwardRef<
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
-EOL
-echo "Component created."
-
-# 2. Re-build the project to automatically update the registry with the new card component and its schema.
-echo "Re-building the registry..."
-pnpm build
-
-# 3. Commit and push the changes to the remote GitHub repository.
-echo "Committing and pushing changes..."
-git add .
-git commit -m "feat(ui): add card component with schema"
-git push origin main
-echo "Push complete."

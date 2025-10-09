@@ -39,5 +39,17 @@
         "description": "The size of the button."
       }
     }
+  },
+  "card": {
+    "name": "card",
+    "dependencies": [
+      "react",
+      "@/lib/utils"
+    ],
+    "files": [
+      "src/components/ui/card.tsx"
+    ],
+    "usage": null,
+    "props": {}
   }
 }
