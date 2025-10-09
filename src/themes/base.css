@@ -1,10 +1,5 @@
-# This script should be executed in the root of the 'Acrobi-Design-System' repository.
-
-# 1. Overwrite the 'base.css' file with the complete and correct theme variables.
-echo "Upgrading base.css with production-ready theme variables from shadcn/ui docs..."
-cat <<'EOL' > ./src/themes/base.css
-/* 
-  This file now contains the complete, production-ready default theme variables 
+/*
+  This file now contains the complete, production-ready default theme variables
   from the official shadcn/ui documentation. This is our new foundation.
 */
 @layer base {
@@ -30,7 +25,7 @@ cat <<'EOL' > ./src/themes/base.css
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -53,16 +48,3 @@ cat <<'EOL' > ./src/themes/base.css
     --ring: 217.2 32.6% 17.5%;
   }
 }
-EOL
-echo "base.css has been upgraded."
-
-# 2. Re-build the project. This doesn't affect the CSS but is good practice.
-echo "Re-building the registry..."
-pnpm build
-
-# 3. Commit and push the theme fix to the remote GitHub repository.
-echo "Committing and pushing the theme fix..."
-git add .
-git commit -m "fix(theme): align base theme with official shadcn/ui documentation"
-git push origin main
-echo "Theme fix is now live."
