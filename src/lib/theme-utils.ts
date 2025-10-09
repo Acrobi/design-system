@@ -1,14 +1,3 @@
-# This script should be executed in the root of the 'design-system' repository.
-
-# --- Story W1.1: Implement Palette Generation Utility ---
-# 1. Install the 'color2k' dependency, which is the engine for our palette generation.
-echo "Installing 'color2k' dependency (Story W1.1)..."
-pnpm add color2k
-echo "Dependency installed."
-
-# 2. Implement the palette generation utility using the provided starter file.
-echo "Implementing the palette generation utility in /src/lib/theme-utils.ts..."
-cat <<'EOL' > ./src/lib/theme-utils.ts
 import { parseToHsl, hslToHex } from 'color2k';
 
 // Defines the saturation and lightness ramp for our 11-step palette.
@@ -39,12 +28,3 @@ export function generatePalette(baseColor: string): Record<string, string> {
 
   return palette;
 }
-EOL
-echo "Utility file created."
-
-# 3. Commit and push the new utility.
-echo "Committing and pushing the theme utility..."
-git add .
-git commit -m "feat(theme): implement palette generation utility (W1.1)"
-git push origin main
-echo "Push complete."
