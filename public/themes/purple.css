@@ -1,0 +1,29 @@
+/* ===================================
+   🎨 PURPLE THEME - Creative Purple Primary
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This theme provides a creative purple color scheme
+   - DO NOT modify the CSS class selector pattern
+   - DO NOT change the variable names - must match globals.css semantic tokens
+   - These values override the base semantic tokens
+   ===================================*/
+
+/* Apply purple theme variables to root element */
+:root {
+  /* Primary color scheme - Creative purple */
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+
+  /* Supporting colors that work with purple primary */
+  --secondary: 270 20% 95%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --accent: 270 20% 95%;
+  --accent-foreground: 222.2 84% 4.9%;
+
+  /* Destructive and other functional colors */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Interactive elements */
+  --ring: 262.1 83.3% 57.8%;
+}

@@ -1,0 +1,29 @@
+/* ===================================
+   🎨 GREEN THEME - Natural Green Primary
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This theme provides a natural green color scheme
+   - DO NOT modify the CSS class selector pattern
+   - DO NOT change the variable names - must match globals.css semantic tokens
+   - These values override the base semantic tokens
+   ===================================*/
+
+/* Apply green theme variables to root element */
+:root {
+  /* Primary color scheme - Natural green */
+  --primary: 142.1 76.2% 36.3%;
+  --primary-foreground: 355.7 100% 97.3%;
+
+  /* Supporting colors that work with green primary */
+  --secondary: 138 20% 95%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --accent: 138 20% 95%;
+  --accent-foreground: 222.2 84% 4.9%;
+
+  /* Destructive and other functional colors */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Interactive elements */
+  --ring: 142.1 76.2% 36.3%;
+}

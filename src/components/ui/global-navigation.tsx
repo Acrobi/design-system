@@ -1,171 +1,273 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "./button"
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Button } from './button'
+import { ThemeSelector } from './theme-selector'
 
-interface NavItem {
-  title: string
+interface NavigationItem {
+  name: string
   href: string
   description: string
-  port: number
-  external?: boolean
+  icon?: string
 }
 
-const navItems: NavItem[] = [
+interface Component {
+  name: string
+  href: string
+  description: string
+}
+
+// Main navigation items
+const navigationItems: NavigationItem[] = [
   {
-    title: "Advanced Theme Editor",
-    href: "/",
-    description: "Dual-palette theme engine with real-time color generation",
-    port: 3001,
-    external: true
+    name: 'Home',
+    href: '/',
+    description: 'Acrobi Design System Overview'
   },
   {
-    title: "Theme Selector (QA)",
-    href: "/",
-    description: "Client A/B theme switching - QA validated",
-    port: 3000
+    name: 'Documentation',
+    href: '/docs',
+    description: 'Complete design system guide & API reference'
   },
   {
-    title: "Button Test",
-    href: "/test-button",
-    description: "shadcn/ui component styling validation",
-    port: 3001,
-    external: true
+    name: 'Theme Test',
+    href: '/theme-test',
+    description: 'Theme system debugging page'
+  }
+]
+
+// Components sorted alphabetically
+const components: Component[] = [
+  {
+    name: 'Button',
+    href: '/test',
+    description: 'Button component test page'
+  },
+  {
+    name: 'Card',
+    href: '/card',
+    description: 'Card component test page'
+  },
+  {
+    name: 'Icon',
+    href: '/icon',
+    description: 'Icon component test page'
+  },
+  {
+    name: 'Label',
+    href: '/label',
+    description: 'Label component test page'
+  },
+  {
+    name: 'Spinner',
+    href: '/spinner',
+    description: 'Spinner component test page'
+  },
+  {
+    name: 'Theme Selector',
+    href: '/theme-selector',
+    description: 'Theme selector component'
   }
 ]
 
 export function GlobalNavigation() {
-  const pathname = usePathname()
-  const currentPort = typeof window !== 'undefined' ? window.location.port : '3000'
+  const router = useRouter()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  const getCurrentPage = () => {
-    const currentHost = typeof window !== 'undefined' ? window.location.hostname : 'localhost'
-    return `${currentHost}:${currentPort}`
-  }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-  const buildUrl = (item: NavItem) => {
-    if (item.external) {
-      return `http://localhost:${item.port}${item.href}`
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return router.pathname === '/'
     }
-    return item.href
+    return router.pathname.startsWith(href)
   }
+
+  const isComponentActive = components.some(comp => router.pathname === comp.href)
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
-                T
+    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center">
+        {/* Logo and Brand */}
+        <div className="mr-4 hidden md:flex">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">A</span>
+            </div>
+            <span className="hidden font-bold sm:inline-block">
+              Acrobi Design System
+            </span>
+          </Link>
+          <nav className="flex items-center gap-6 text-sm">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`transition-colors hover:text-foreground/80 ${
+                  isActive(item.href) ? 'text-foreground' : 'text-foreground/60'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Components Dropdown */}
+            <div className="relative group">
+              <Button
+                variant={isComponentActive ? "default" : "ghost"}
+                size="sm"
+                className="px-3 py-1"
+              >
+                Components
+                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Button>
+
+              {/* Dropdown Menu */}
+              <div className="absolute top-full left-0 mt-1 min-w-[280px] rounded-md border bg-popover shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div className="py-1">
+                  {components.map((component) => (
+                    <Link
+                      key={component.href}
+                      href={component.href}
+                      className={`block px-4 py-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground ${
+                        router.pathname === component.href ? 'bg-accent text-accent-foreground' : ''
+                      }`}
+                    >
+                      <div className="font-medium">{component.name}</div>
+                      <div className="text-xs text-muted-foreground">{component.description}</div>
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <div>
-                <h1 className="text-lg font-semibold">Theme Development Suite</h1>
-                <p className="text-xs text-muted-foreground">
-                  {getCurrentPage()}
-                </p>
+            </div>
+          </nav>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="flex md:hidden">
+          <Link href="/" className="mr-2 flex items-center space-x-2">
+            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">A</span>
+            </div>
+          </Link>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        </div>
+
+        {/* Right side actions */}
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+            {/* Mobile Title */}
+            <div className="md:hidden">
+              <div className="text-sm font-medium">
+                {isComponentActive
+                  ? components.find(comp => router.pathname === comp.href)?.name || 'Acrobi Design System'
+                  : navigationItems.find(item => isActive(item.href))?.name || 'Acrobi Design System'
+                }
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {isComponentActive
+                  ? components.find(comp => router.pathname === comp.href)?.description
+                  : navigationItems.find(item => isActive(item.href))?.description
+                }
               </div>
             </div>
           </div>
-
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => {
-              const isCurrentPage = !item.external && pathname === item.href
-              const isCurrentPort = currentPort === item.port.toString()
-
-              return (
-                <div key={item.href} className="relative group">
-                  <Link
-                    href={buildUrl(item)}
-                    target={item.external ? "_blank" : "_self"}
-                    rel={item.external ? "noopener noreferrer" : undefined}
-                    className={`
-                      flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium
-                      transition-colors duration-200
-                      ${isCurrentPage && isCurrentPort
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                      }
-                    `}
-                  >
-                    <span>{item.title}</span>
-                    {item.external && (
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    )}
-                    {isCurrentPort && !item.external && (
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    )}
-                  </Link>
-
-                  {/* Tooltip */}
-                  <div className="absolute left-0 mt-1 w-64 p-2 bg-popover border rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
-                    <p className="text-xs font-mono mt-1">localhost:{item.port}{item.href}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button variant="ghost" size="sm">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile navigation */}
-        <div className="md:hidden border-t py-4">
-          <div className="grid grid-cols-1 gap-2">
-            {navItems.map((item) => {
-              const isCurrentPage = !item.external && pathname === item.href
-              const isCurrentPort = currentPort === item.port.toString()
-
-              return (
-                <Link
-                  key={item.href}
-                  href={buildUrl(item)}
-                  target={item.external ? "_blank" : "_self"}
-                  rel={item.external ? "noopener noreferrer" : undefined}
-                  className={`
-                    flex items-center justify-between p-3 rounded-md border
-                    transition-colors duration-200
-                    ${isCurrentPage && isCurrentPort
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background hover:bg-accent text-muted-foreground hover:text-foreground"
-                    }
-                  `}
-                >
-                  <div>
-                    <div className="flex items-center space-x-2">
-                      <span className="font-medium">{item.title}</span>
-                      {item.external && (
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      )}
-                      {isCurrentPort && !item.external && (
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      )}
-                    </div>
-                    <p className="text-xs mt-1 opacity-80">{item.description}</p>
-                  </div>
-                  <div className="text-xs font-mono opacity-60">
-                    :{item.port}
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
+          <nav className="flex items-center">
+            <ThemeSelector />
+          </nav>
         </div>
       </div>
+
+      {/* Mobile Navigation */}
+      {isMobileMenuOpen && (
+        <div className="border-t md:hidden">
+          <div className="container px-4 py-2">
+            <nav className="grid grid-cols-1 gap-1">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive(item.href)
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-foreground/60 hover:text-foreground hover:bg-accent'
+                  }`}
+                >
+                    <div>
+                      <div>{item.name}</div>
+                      <div className="text-xs opacity-60">{item.description}</div>
+                    </div>
+                </Link>
+              ))}
+
+              {/* Components in Mobile Menu */}
+              <div className="pt-2 mt-2 border-t">
+                <div className="px-3 py-2 text-xs font-medium text-muted-foreground">
+                  Components
+                </div>
+                {components.map((component) => (
+                  <Link
+                    key={component.href}
+                    href={component.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                      router.pathname === component.href
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-foreground/60 hover:text-foreground hover:bg-accent'
+                    }`}
+                  >
+                    <div>
+                      <div>{component.name}</div>
+                      <div className="text-xs opacity-60">{component.description}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {/* Breadcrumb for mobile */}
+      {router.pathname !== '/' && !isMobileMenuOpen && (
+        <div className="border-t bg-muted/30 md:hidden">
+          <div className="container px-4 py-2">
+            <div className="text-xs text-muted-foreground">
+              <Link href="/" className="hover:text-foreground">
+                Home
+              </Link>
+              {router.pathname !== '/' && (
+                <>
+                  <span className="mx-2">/</span>
+                  <span className="text-foreground">
+                    {isComponentActive
+                      ? components.find(comp => router.pathname === comp.href)?.name
+                      : navigationItems.find(item => isActive(item.href))?.name
+                    }
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

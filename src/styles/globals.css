@@ -1,46 +1,418 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-card: #ffffff;
-  --color-card-foreground: #0a0a0a;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #0a0a0a;
-  --color-primary: #171717;
-  --color-primary-foreground: #fafafa;
-  --color-secondary: #f5f5f5;
-  --color-secondary-foreground: #171717;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-accent: #f5f5f5;
-  --color-accent-foreground: #171717;
-  --color-destructive: #ef4444;
-  --color-border: #e5e5e5;
-  --color-input: #e5e5e5;
-  --color-ring: #18181b;
-  --radius: 0.5rem;
+/* ===================================
+   🏗️ TIER 1: PRIMITIVE DESIGN TOKENS
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - These are RAW, context-less values - NEVER use directly in components
+   - DO NOT modify the naming convention (--p50, --n100, etc.)
+   - DO NOT add hard-coded colors anywhere else in the system
+   - ONLY modify if adding new primitive scales
+   - Components MUST use semantic tokens from Tier 2 below
+   ===================================*/
+
+:root {
+  /* Color Primitives - HSL format for CSS variables */
+  /* Primary color scale - blue by default, but these are context-less */
+  --p50: 210 100% 98%;
+  --p100: 210 100% 96%;
+  --p200: 210 100% 94%;
+  --p300: 210 100% 90%;
+  --p400: 210 100% 85%;
+  --p500: 210 100% 80%;
+  --p600: 210 100% 70%;
+  --p700: 210 100% 60%;
+  --p800: 210 100% 50%;
+  --p900: 210 100% 40%;
+  --p950: 210 100% 30%;
+
+  /* Neutral color scale - for grays and whites */
+  --n50: 0 0% 98%;
+  --n100: 0 0% 96%;
+  --n200: 0 0% 94%;
+  --n300: 0 0% 90%;
+  --n400: 0 0% 85%;
+  --n500: 0 0% 80%;
+  --n600: 0 0% 70%;
+  --n700: 0 0% 60%;
+  --n800: 0 0% 50%;
+  --n900: 0 0% 40%;
+  --n950: 0 0% 30%;
+
+  /* Typography Primitives - Font stacks */
+  /* DO NOT change these unless updating the entire design system font strategy */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Fluid Typography - responsive text sizes using clamp() */
+  /* DO NOT modify the clamp() formulas without understanding fluid typography principles */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.4vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.9rem + 1.8vw, 3rem);
+
+  /* Spacing Primitives - Fixed spacing values */
+  /* DO NOT modify these unless adding new spacing scale points */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Shadow Primitives - Elevation shadows */
+  /* DO NOT modify these unless updating the entire shadow system */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Border Radius Primitives - Corner rounding */
+  /* DO NOT modify these unless updating the entire radius system */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Z-Index Primitives - Stacking context */
+  /* DO NOT modify these values without understanding z-index hierarchy */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* Motion Primitives - Animation timing */
+  /* DO NOT modify these unless updating the entire motion system */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-background: #0a0a0a;
-    --color-foreground: #fafafa;
-    --color-card: #0a0a0a;
-    --color-card-foreground: #fafafa;
-    --color-popover: #0a0a0a;
-    --color-popover-foreground: #fafafa;
-    --color-primary: #fafafa;
-    --color-primary-foreground: #171717;
-    --color-secondary: #262626;
-    --color-secondary-foreground: #fafafa;
-    --color-muted: #262626;
-    --color-muted-foreground: #a3a3a3;
-    --color-accent: #262626;
-    --color-accent-foreground: #fafafa;
-    --color-destructive: #dc2626;
-    --color-border: #262626;
-    --color-input: #262626;
-    --color-ring: #d4d4d8;
+/* ===================================
+   🎯 TIER 2: SEMANTIC DESIGN TOKENS
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - These are ALIASES that give primitives purpose
+   - COMPONENTS MUST USE THESE TOKENS - never primitives directly
+   - DO NOT reference primitive tokens (--p50, --n100, etc.) in components
+   - DO modify these values to change the visual design
+   - DO add new semantic tokens as needed for new design patterns
+   ===================================*/
+
+:root {
+  /* Color Semantics - Maps primitives to UI purposes */
+  /* These are the ONLY color tokens components should use */
+  /* 🚨 SHADCN/UI BASE THEME - Converting OKLCH to HSL */
+  --background: 0 0% 100%;              /* shadcn: oklch(1 0 0) */
+  --foreground: 222.2 84% 4.9%;           /* shadcn: oklch(0.145 0 0) */
+  --card: 0 0% 100%;                   /* shadcn: oklch(1 0 0) */
+  --card-foreground: 222.2 84% 4.9%;      /* shadcn: oklch(0.145 0 0) */
+  --popover: 0 0% 100%;                /* shadcn: oklch(1 0 0) */
+  --popover-foreground: 222.2 84% 4.9%;   /* shadcn: oklch(0.145 0 0) */
+  --primary: 0 0% 0%;                    /* shadcn: oklch(0.205 0 0) */
+  --primary-foreground: 0 0% 100%;        /* shadcn: oklch(0.985 0 0) */
+  --secondary: 210 40% 96.1%;             /* shadcn: oklch(0.97 0 0) */
+  --secondary-foreground: 222.2 84% 4.9%;   /* shadcn: oklch(0.205 0 0) */
+  --muted: 210 40% 96.1%;                /* shadcn: oklch(0.97 0 0) */
+  --muted-foreground: 215.4 16.3% 46.9%;  /* shadcn: oklch(0.556 0 0) */
+  --accent: 210 40% 96.1%;               /* shadcn: oklch(0.97 0 0) */
+  --accent-foreground: 222.2 84% 4.9%;    /* shadcn: oklch(0.205 0 0) */
+  --destructive: 0 84.2% 60.2%;           /* shadcn: oklch(0.577 0.245 27.325) */
+  --destructive-foreground: 0 0% 100%;     /* shadcn: oklch(0.985 0 0) */
+  --border: 214.3 31.8% 91.4%;           /* shadcn: oklch(0.97 0 0) */
+  --input: 214.3 31.8% 91.4%;            /* shadcn: oklch(0.97 0 0) */
+  --ring: 0 0% 0%;                       /* shadcn: oklch(0.205 0 0) */
+
+  /* Typography Semantics - Maps font primitives to purposes */
+  --font-heading: var(--font-sans);  /* Heading font stack */
+  --font-body: var(--font-sans);     /* Body text font */
+  --font-code: var(--font-mono);     /* Code/monospace font */
+
+  /* Spacing Semantics - Maps spacing primitives to UI patterns */
+  --container-sm: var(--space-4);   /* Small container padding */
+  --container-md: var(--space-6);   /* Medium container padding */
+  --container-lg: var(--space-8);   /* Large container padding */
+  --container-xl: var(--space-12);  /* Extra large container padding */
+
+  /* Shadow Semantics - Maps shadow primitives to UI elements */
+  --shadow-card: var(--shadow-sm);     /* Card elevation */
+  --shadow-dropdown: var(--shadow-lg); /* Dropdown elevation */
+  --shadow-modal: var(--shadow-xl);    /* Modal elevation */
+
+  /* Border Radius Semantics - Maps radius primitives to UI elements */
+  --radius-card: var(--radius-lg);    /* Card corner radius */
+  --radius-button: var(--radius-md);  /* Button corner radius */
+  --radius-input: var(--radius-md);   /* Input field corner radius */
+
+  /* Motion Semantics - Pre-defined transition shortcuts */
+  --transition-colors: color var(--duration-normal) var(--ease-in-out),
+                     background-color var(--duration-normal) var(--ease-in-out),
+                     border-color var(--duration-normal) var(--ease-in-out);
+  --transition-transform: transform var(--duration-normal) var(--ease-in-out);
+  --transition-all: all var(--duration-normal) var(--ease-in-out);
+}
+
+/* ===================================
+   🌙 DARK MODE: SEMANTIC TOKEN OVERRIDES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This section overrides semantic tokens for dark mode
+   - DO NOT modify the structure (.dark selector)
+   - DO modify the mapped values to adjust dark mode appearance
+   - DO NOT reference primitive tokens directly here
+   - DO NOT add new tokens here - add them to the main semantic section above
+   ===================================*/
+
+.dark {
+  /* Color Semantics - Dark Mode Overrides */
+  /* 🚨 SHADCN/UI DARK THEME - Converting OKLCH to HSL */
+  --background: 222.2 84% 4.9%;          /* shadcn: oklch(0.145 0 0) */
+  --foreground: 210 40% 98%;              /* shadcn: oklch(0.985 0 0) */
+  --card: 222.2 84% 4.9%;               /* shadcn: oklch(0.145 0 0) */
+  --card-foreground: 210 40% 98%;          /* shadcn: oklch(0.985 0 0) */
+  --popover: 222.2 84% 4.9%;            /* shadcn: oklch(0.145 0 0) */
+  --popover-foreground: 210 40% 98%;         /* shadcn: oklch(0.985 0 0) */
+  --primary: 0 0% 100%;                   /* shadcn: oklch(0.922 0 0) */
+  --primary-foreground: 222.2 84% 4.9%;       /* shadcn: oklch(0.205 0 0) */
+  --secondary: 217.2 32.6% 17.5%;         /* shadcn: oklch(0.269 0 0) */
+  --secondary-foreground: 210 40% 98%;        /* shadcn: oklch(0.985 0 0) */
+  --muted: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.269 0 0) */
+  --muted-foreground: 212.4 32.6% 70.8%;     /* shadcn: oklch(0.708 0 0) */
+  --accent: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.371 0 0) */
+  --accent-foreground: 210 40% 98%;           /* shadcn: oklch(0.985 0 0) */
+  --destructive: 0 62.8% 30.6%;             /* shadcn: oklch(0.704 0.191 22.216) */
+  --destructive-foreground: 0 0% 100%;       /* shadcn: oklch(0.985 0 0) */
+  --border: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.269 0 0) */
+  --input: 217.2 32.6% 17.5%;                /* shadcn: oklch(0.269 0 0) */
+  --ring: 0 0% 100%;                       /* shadcn: oklch(0.922 0 0) */
+
+  /* Shadow Semantics - Dark Mode Adjustments */
+  --shadow-card: var(--shadow-sm);
+  --shadow-dropdown: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+/* ===================================
+   🎨 THEME FILE REFERENCES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Color themes are now in separate CSS files in /themes directory
+   - DO NOT add theme overrides here - use /themes/{theme-name}.css files
+   - This follows the proper architecture: separate theme files
+   - Theme provider dynamically loads the appropriate theme CSS file
+   ===================================*/
+
+/* ===================================
+   🏢 CLIENT THEME OVERRIDES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This section is reserved for client-specific theme overrides
+   - DO NOT add styles here unless implementing client theming
+   - Client themes would follow pattern: .theme-client-a { --primary: ...; }
+   - This allows multiple clients to override semantic tokens
+   - DO NOT modify this section structure
+   ===================================*/
+
+/* Example structure (DO NOT UNLESS IMPLEMENTING CLIENT THEMING):
+.theme-client-a {
+  --primary: 220 90% 56%;  -- Client A's brand color
+  --secondary: ...;
+}
+
+.theme-client-b {
+  --primary: 142 76% 36%;  -- Client B's brand color
+  --secondary: ...;
+}
+*/
+
+/* ===================================
+   📦 COLLECTION THEME OVERRIDES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This section is reserved for collection-specific overrides
+   - DO NOT add styles here unless implementing collection theming
+   - Collections would follow pattern: .collection-xyz { --primary: ...; }
+   - This allows specific UI collections to have unique theming
+   - DO NOT modify this section structure
+   ===================================*/
+
+/* Example structure (DO NOT UNLESS IMPLEMENTING COLLECTION THEMING):
+.collection-dashboard {
+  --card: var(--n100);  -- Dashboard-specific card background
+}
+
+.collection-form {
+  --input: var(--n300);  -- Form-specific input styling
+}
+*/
+
+/* ===================================
+   ⚙️ TAILWIND CONFIGURATION
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - The @theme block provides configuration for Tailwind CSS v4
+   - DO NOT modify the structure of this block
+   - DO update the color mappings if adding new semantic tokens
+   - DO NOT reference primitive tokens directly here
+   - ALWAYS use semantic tokens (--primary, --background, etc.)
+   - NOTE: @theme is valid in Tailwind CSS v4 but may show warnings in some editors
+   ===================================*/
+
+@theme {
+  /* Map semantic tokens to Tailwind utilities */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Typography */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-code: var(--font-code);
+
+  /* Spacing */
+  --radius: var(--radius-card);
+
+  /* Responsive container */
+  --container-sm: var(--container-sm);
+  --container-md: var(--container-md);
+  --container-lg: var(--container-lg);
+  --container-xl: var(--container-xl);
+}
+
+/* ===================================
+   🎨 TAILWIND v4 COMPATIBILITY
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - The @theme rule above is for Tailwind CSS v4 configuration
+   - This rule may show "Unknown at rule" warnings in some editors
+   - This is EXPECTED BEHAVIOR and does not affect functionality
+   - DO NOT remove or modify the @theme block
+   - The @theme block enables proper Tailwind v4 theming
+   ===================================*/
+
+/* ===================================
+   🛠️ UTILITY CLASSES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Custom utility classes that extend Tailwind
+   - DO NOT modify existing utilities unless fixing bugs
+   - DO add new utilities in the appropriate section
+   - Keep utilities simple and reusable
+   ===================================*/
+
+/* Smooth scrolling - DO NOT REMOVE unless changing scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility - DO NOT MODIFY unless accessibility requirements change */
+.focus-visible:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Reduced motion support - DO NOT REMOVE unless changing accessibility standards */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===================================
+   📱 OVERSCROLL BACKGROUND FIXES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Prevents white background on overscroll in both light and dark modes
+   - Ensures background color matches theme in all scroll scenarios
+   - DO NOT remove these fixes - essential for consistent visual experience
+   ===================================*/
+
+/* Fix overscroll background for both light and dark modes */
+html {
+  background-color: var(--color-background);
+  overscroll-behavior: none;
+}
+
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent overscroll showing white background */
+* {
+  overscroll-behavior: none;
+}
+
+/* Ensure all elements respect the background */
+#__next {
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+/* Fix mobile overscroll rubber banding */
+html, body {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+}
+
+/* Additional mobile overscroll fixes */
+@media (max-width: 768px) {
+  html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-background);
+  }
+
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--color-background);
   }
 }

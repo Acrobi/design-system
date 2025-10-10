@@ -2,153 +2,156 @@
 
 import * as React from "react"
 import { Button } from "./button"
+import { useTheme } from "./theme-provider"
 
-interface Theme {
-  name: string
-  displayName: string
-  primaryColor: string
-  primaryHover: string
-}
+// ===================================
+// 🎨 THEME SELECTOR CONFIGURATION
+// ===================================
+// 🚨 AI AGENT GUIDANCE:
+// - This component provides color theme switching UI
+// - DO NOT modify the theme definitions or colors
+// - DO NOT change the theme order or naming convention
+// - This shows actual color themes, not light/dark modes
+// ===================================
 
-const themes: Theme[] = [
+// Color theme definitions - 🚨 DO NOT modify these values
+const colorThemes = [
   {
-    name: "default",
-    displayName: "Default Theme",
-    primaryColor: "#1975f0",
-    primaryHover: "#1664d8"
+    name: "base",
+    label: "Base",
+    description: "shadcn/ui default theme",
+    preview: "bg-gradient-to-r from-gray-100 to-gray-900 dark:from-gray-900 dark:to-gray-100"
   },
   {
-    name: "client-a",
-    displayName: "Client A",
-    primaryColor: "#8b5cf6", // Purple
-    primaryHover: "#7c3aed"
+    name: "blue",
+    label: "Blue",
+    description: "Professional blue primary",
+    preview: "bg-gradient-to-r from-blue-400 to-blue-600"
   },
   {
-    name: "client-b",
-    displayName: "Client B",
-    primaryColor: "#10b981", // Green
-    primaryHover: "#059669"
+    name: "purple",
+    label: "Purple",
+    description: "Creative purple primary",
+    preview: "bg-gradient-to-r from-purple-400 to-purple-600"
+  },
+  {
+    name: "green",
+    label: "Green",
+    description: "Natural green primary",
+    preview: "bg-gradient-to-r from-green-400 to-green-600"
+  },
+  {
+    name: "orange",
+    label: "Orange",
+    description: "Energetic orange primary",
+    preview: "bg-gradient-to-r from-orange-400 to-orange-600"
+  },
+  {
+    name: "red",
+    label: "Red",
+    description: "Bold red primary",
+    preview: "bg-gradient-to-r from-red-400 to-red-600"
   }
-]
+] as const
+
+// ===================================
+// 🎛️ THEME SELECTOR COMPONENT
+// ===================================
+// 🚨 AI AGENT GUIDANCE:
+// - This component renders color theme selection UI
+// - DO NOT modify the layout structure significantly
+// - DO NOT remove the theme preview functionality
+// - The select dropdown allows explicit theme selection
+// ===================================
 
 export function ThemeSelector() {
-  const [currentTheme, setCurrentTheme] = React.useState<string>("default")
-  const [isDarkMode, setIsDarkMode] = React.useState(false)
+  // 🚨 DO NOT modify this hook usage - it's essential for theme functionality
+  const { theme, setTheme, toggleTheme, mode, toggleMode } = useTheme()
 
-  const applyTheme = (theme: Theme) => {
-    // Create or update style element for theme variables
-    let themeStyle = document.getElementById('dynamic-theme-vars')
-    if (!themeStyle) {
-      themeStyle = document.createElement('style')
-      themeStyle.id = 'dynamic-theme-vars'
-      document.head.appendChild(themeStyle)
-    }
-
-    // Apply theme colors as CSS custom properties
-    const cssVariables = `
-      :root {
-        --primary: ${theme.primaryColor};
-        --primary-foreground: #ffffff;
-        --ring: ${theme.primaryColor}99;
-      }
-
-      .dark {
-        --primary: ${theme.primaryHover};
-        --primary-foreground: #ffffff;
-        --ring: ${theme.primaryHover}99;
-      }
-
-      .hover\\:bg-primary\\/90:hover {
-        background-color: ${theme.primaryColor};
-        opacity: 0.9;
-      }
-
-      .bg-primary {
-        background-color: ${theme.primaryColor};
-      }
-
-      .text-primary {
-        color: ${theme.primaryColor};
-      }
-
-      .focus-within\\:ring-primary:focus-within {
-        --tw-ring-color: ${theme.primaryColor}99;
-      }
-
-      .ring-primary {
-        --tw-ring-color: ${theme.primaryColor}99;
-      }
-    `
-
-    themeStyle.textContent = cssVariables
-    setCurrentTheme(theme.name)
-  }
-
-  const toggleDarkMode = () => {
-    const html = document.documentElement
-    if (isDarkMode) {
-      html.classList.remove('dark')
-    } else {
-      html.classList.add('dark')
-    }
-    setIsDarkMode(!isDarkMode)
-  }
-
-  React.useEffect(() => {
-    // Apply default theme on mount
-    const defaultTheme = themes.find(t => t.name === "default")!
-    applyTheme(defaultTheme)
-  }, [])
-
+  // 🚨 DO NOT modify this rendering structure - prevents hydration mismatches
   return (
-    <div className="flex flex-col gap-4 p-4 border rounded-lg bg-card">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Theme Selector</h3>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={toggleDarkMode}
-          className="ml-4"
-        >
-          {isDarkMode ? "☀️ Light" : "🌙 Dark"}
-        </Button>
-      </div>
+    <div className="flex items-center gap-3">
+      {/* Mode toggle button - for light/dark/system switching */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={toggleMode}
+        className="px-2 py-1 h-8"
+        title={`Mode: ${mode} - Click to toggle`}
+      >
+        {/* 🚨 DO NOT modify these mode icons */}
+        {mode === "light" && "☀️"}
+        {mode === "dark" && "🌙"}
+        {mode === "system" && "💻"}
+      </Button>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="theme-select" className="text-sm font-medium">
-          Select Theme:
-        </label>
+      {/* Color theme selector */}
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-medium text-muted-foreground">Theme:</span>
         <select
-          id="theme-select"
-          value={currentTheme}
+          value={theme}
           onChange={(e) => {
-            const theme = themes.find(t => t.name === e.target.value)
-            if (theme) applyTheme(theme)
+            // 🚨 DO NOT modify this theme change handling
+            const newTheme = e.target.value as typeof theme
+            console.log(`🎨 Color theme changed to: ${newTheme}`)
+            setTheme(newTheme)
           }}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-8 rounded-md border border-input bg-background px-2 py-1 text-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer min-w-[80px]"
         >
-          {themes.map((theme) => (
-            <option key={theme.name} value={theme.name}>
-              {theme.displayName}
+          {/* 🚨 DO NOT modify these option values or display text */}
+          {colorThemes.map((themeOption) => (
+            <option key={themeOption.name} value={themeOption.name}>
+              {themeOption.label}
             </option>
           ))}
         </select>
-      </div>
 
-      <div className="flex gap-2 mt-2">
-        <Button variant="default">Primary Button</Button>
-        <Button variant="secondary">Secondary Button</Button>
-        <Button variant="outline">Outline Button</Button>
-      </div>
-
-      <div className="text-xs text-muted-foreground mt-2">
-        Current theme: <strong>{themes.find(t => t.name === currentTheme)?.displayName}</strong>
-        {currentTheme !== "default" && (
-          <span className="ml-2">
-            ({currentTheme === "client-a" ? "Purple" : "Green"} theme active)
-          </span>
-        )}
+        {/* Theme preview button - cycles through themes */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={toggleTheme}
+          className="px-2 py-1 h-8 w-8 p-0"
+          title={`Current: ${theme} - Click to cycle`}
+        >
+          {/* 🚨 DO NOT modify this preview display */}
+          <div
+            className={colorThemes.find(t => t.name === theme)?.preview || ""}
+            style={{
+              width: "12px",
+              height: "12px",
+              borderRadius: "2px"
+            }}
+          />
+        </Button>
       </div>
     </div>
   )
 }
+
+// ===================================
+// 📚 COMPONENT USAGE GUIDELINES
+// ===================================
+// 🚨 AI AGENT GUIDANCE:
+// USAGE EXAMPLES:
+//
+// 1. In Navigation:
+//    <ThemeSelector />
+//
+// 2. In Settings Panel:
+//    <ThemeSelector />
+//
+// DO NOT:
+// - Use this component for mode-only switching
+// - Modify the styling to break navigation layout
+// - Remove or change the theme previews
+// - Add additional color options here
+//
+// THE COLOR THEMES ARE:
+// - base: shadcn/ui default (black/white)
+// - blue: Professional blue primary
+// - purple: Creative purple primary
+// - green: Natural green primary
+// - orange: Energetic orange primary
+// - red: Bold red primary
+// ===================================

@@ -3,9 +3,9 @@
  * @prop {className} {string} {} - Additional CSS classes.
  */
 import * as React from "react"
-import { cn } from "@/lib/utils"
-import { IconMetaphor } from "@/src/lib/icon-metaphors"
-import { lucideMap } from "@/src/lib/icon-maps/lucide.map"
+import { cn } from "../../lib/utils"
+import { IconMetaphor } from "../../lib/icon-metaphors"
+import { lucideMap } from "../../lib/icon-maps/lucide.map"
 
 // In the future, this component will use a React Context to get a theme-specific map.
 // For now, it directly uses the default Lucide map.
