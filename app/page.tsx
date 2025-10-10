@@ -1,5 +1,6 @@
 import * as React from "react"
 import { OpenInV0Button } from "@/components/open-in-v0-button"
+import { ThemeSelector } from "@/src/components/ui/theme-selector"
 import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world"
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form"
 import PokemonPage from "@/registry/new-york/blocks/complex-component/page"
@@ -17,6 +18,7 @@ export default function Home() {
         </p>
       </header>
       <main className="flex flex-col flex-1 gap-8">
+        <ThemeSelector />
         <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
           <div className="flex items-center justify-between">
             <h2 className="text-sm text-muted-foreground sm:pl-3">
