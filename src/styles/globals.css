@@ -123,26 +123,26 @@
 :root {
   /* Color Semantics - Maps primitives to UI purposes */
   /* These are the ONLY color tokens components should use */
-  /* 🚨 SHADCN/UI BASE THEME - Converting OKLCH to HSL */
-  --background: 0 0% 100%;              /* shadcn: oklch(1 0 0) */
-  --foreground: 222.2 84% 4.9%;           /* shadcn: oklch(0.145 0 0) */
-  --card: 0 0% 100%;                   /* shadcn: oklch(1 0 0) */
-  --card-foreground: 222.2 84% 4.9%;      /* shadcn: oklch(0.145 0 0) */
-  --popover: 0 0% 100%;                /* shadcn: oklch(1 0 0) */
-  --popover-foreground: 222.2 84% 4.9%;   /* shadcn: oklch(0.145 0 0) */
-  --primary: 0 0% 0%;                    /* shadcn: oklch(0.205 0 0) */
-  --primary-foreground: 0 0% 100%;        /* shadcn: oklch(0.985 0 0) */
-  --secondary: 210 40% 96.1%;             /* shadcn: oklch(0.97 0 0) */
-  --secondary-foreground: 222.2 84% 4.9%;   /* shadcn: oklch(0.205 0 0) */
-  --muted: 210 40% 96.1%;                /* shadcn: oklch(0.97 0 0) */
-  --muted-foreground: 215.4 16.3% 46.9%;  /* shadcn: oklch(0.556 0 0) */
-  --accent: 210 40% 96.1%;               /* shadcn: oklch(0.97 0 0) */
-  --accent-foreground: 222.2 84% 4.9%;    /* shadcn: oklch(0.205 0 0) */
-  --destructive: 0 84.2% 60.2%;           /* shadcn: oklch(0.577 0.245 27.325) */
-  --destructive-foreground: 0 0% 100%;     /* shadcn: oklch(0.985 0 0) */
-  --border: 214.3 31.8% 91.4%;           /* shadcn: oklch(0.97 0 0) */
-  --input: 214.3 31.8% 91.4%;            /* shadcn: oklch(0.97 0 0) */
-  --ring: 0 0% 0%;                       /* shadcn: oklch(0.205 0 0) */
+  /* 🚨 BASE THEME - Converting OKLCH to HSL */
+  --background: 0 0% 100%;              /* base: oklch(1 0 0) */
+  --foreground: 222.2 84% 4.9%;           /* base: oklch(0.145 0 0) */
+  --card: 0 0% 100%;                   /* base: oklch(1 0 0) */
+  --card-foreground: 222.2 84% 4.9%;      /* base: oklch(0.145 0 0) */
+  --popover: 0 0% 100%;                /* base: oklch(1 0 0) */
+  --popover-foreground: 222.2 84% 4.9%;   /* base: oklch(0.145 0 0) */
+  --primary: 0 0% 0%;                    /* base: oklch(0.205 0 0) */
+  --primary-foreground: 0 0% 100%;        /* base: oklch(0.985 0 0) */
+  --secondary: 210 40% 96.1%;             /* base: oklch(0.97 0 0) */
+  --secondary-foreground: 222.2 84% 4.9%;   /* base: oklch(0.205 0 0) */
+  --muted: 210 40% 96.1%;                /* base: oklch(0.97 0 0) */
+  --muted-foreground: 215.4 16.3% 46.9%;  /* base: oklch(0.556 0 0) */
+  --accent: 210 40% 96.1%;               /* base: oklch(0.97 0 0) */
+  --accent-foreground: 222.2 84% 4.9%;    /* base: oklch(0.205 0 0) */
+  --destructive: 0 84.2% 60.2%;           /* base: oklch(0.577 0.245 27.325) */
+  --destructive-foreground: 0 0% 100%;     /* base: oklch(0.985 0 0) */
+  --border: 214.3 31.8% 91.4%;           /* base: oklch(0.97 0 0) */
+  --input: 214.3 31.8% 91.4%;            /* base: oklch(0.97 0 0) */
+  --ring: 0 0% 0%;                       /* base: oklch(0.205 0 0) */
 
   /* Typography Semantics - Maps font primitives to purposes */
   --font-heading: var(--font-sans);  /* Heading font stack */
@@ -187,25 +187,25 @@
 .dark {
   /* Color Semantics - Dark Mode Overrides */
   /* 🚨 SHADCN/UI DARK THEME - Converting OKLCH to HSL */
-  --background: 222.2 84% 4.9%;          /* shadcn: oklch(0.145 0 0) */
-  --foreground: 210 40% 98%;              /* shadcn: oklch(0.985 0 0) */
-  --card: 222.2 84% 4.9%;               /* shadcn: oklch(0.145 0 0) */
-  --card-foreground: 210 40% 98%;          /* shadcn: oklch(0.985 0 0) */
-  --popover: 222.2 84% 4.9%;            /* shadcn: oklch(0.145 0 0) */
-  --popover-foreground: 210 40% 98%;         /* shadcn: oklch(0.985 0 0) */
-  --primary: 0 0% 100%;                   /* shadcn: oklch(0.922 0 0) */
-  --primary-foreground: 222.2 84% 4.9%;       /* shadcn: oklch(0.205 0 0) */
-  --secondary: 217.2 32.6% 17.5%;         /* shadcn: oklch(0.269 0 0) */
-  --secondary-foreground: 210 40% 98%;        /* shadcn: oklch(0.985 0 0) */
-  --muted: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.269 0 0) */
-  --muted-foreground: 212.4 32.6% 70.8%;     /* shadcn: oklch(0.708 0 0) */
-  --accent: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.371 0 0) */
-  --accent-foreground: 210 40% 98%;           /* shadcn: oklch(0.985 0 0) */
-  --destructive: 0 62.8% 30.6%;             /* shadcn: oklch(0.704 0.191 22.216) */
-  --destructive-foreground: 0 0% 100%;       /* shadcn: oklch(0.985 0 0) */
-  --border: 217.2 32.6% 17.5%;              /* shadcn: oklch(0.269 0 0) */
-  --input: 217.2 32.6% 17.5%;                /* shadcn: oklch(0.269 0 0) */
-  --ring: 0 0% 100%;                       /* shadcn: oklch(0.922 0 0) */
+  --background: 222.2 84% 4.9%;          /* base: oklch(0.145 0 0) */
+  --foreground: 210 40% 98%;              /* base: oklch(0.985 0 0) */
+  --card: 222.2 84% 4.9%;               /* base: oklch(0.145 0 0) */
+  --card-foreground: 210 40% 98%;          /* base: oklch(0.985 0 0) */
+  --popover: 222.2 84% 4.9%;            /* base: oklch(0.145 0 0) */
+  --popover-foreground: 210 40% 98%;         /* base: oklch(0.985 0 0) */
+  --primary: 0 0% 100%;                   /* base: oklch(0.922 0 0) */
+  --primary-foreground: 222.2 84% 4.9%;       /* base: oklch(0.205 0 0) */
+  --secondary: 217.2 32.6% 17.5%;         /* base: oklch(0.269 0 0) */
+  --secondary-foreground: 210 40% 98%;        /* base: oklch(0.985 0 0) */
+  --muted: 217.2 32.6% 17.5%;              /* base: oklch(0.269 0 0) */
+  --muted-foreground: 212.4 32.6% 70.8%;     /* base: oklch(0.708 0 0) */
+  --accent: 217.2 32.6% 17.5%;              /* base: oklch(0.371 0 0) */
+  --accent-foreground: 210 40% 98%;           /* base: oklch(0.985 0 0) */
+  --destructive: 0 62.8% 30.6%;             /* base: oklch(0.704 0.191 22.216) */
+  --destructive-foreground: 0 0% 100%;       /* base: oklch(0.985 0 0) */
+  --border: 217.2 32.6% 17.5%;              /* base: oklch(0.269 0 0) */
+  --input: 217.2 32.6% 17.5%;                /* base: oklch(0.269 0 0) */
+  --ring: 0 0% 100%;                       /* base: oklch(0.922 0 0) */
 
   /* Shadow Semantics - Dark Mode Adjustments */
   --shadow-card: var(--shadow-sm);
@@ -217,7 +217,7 @@
    🎨 THEME FILE REFERENCES
    ===================================
    🚨 AI AGENT GUIDANCE:
-   - Color themes are now in separate CSS files in /themes directory
+   - Color themes are in separate CSS files in /themes directory
    - DO NOT add theme overrides here - use /themes/{theme-name}.css files
    - This follows the proper architecture: separate theme files
    - Theme provider dynamically loads the appropriate theme CSS file
@@ -345,7 +345,7 @@ html {
 /* Focus styles for accessibility - DO NOT MODIFY unless accessibility requirements change */
 .focus-visible:focus-visible {
   outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline-offset: 1px;
 }
 
 /* Reduced motion support - DO NOT REMOVE unless changing accessibility standards */
