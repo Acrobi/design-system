@@ -1,7 +1,0 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/dark-mode-test/page": "app/dark-mode-test/page.js",
-  "/page": "app/page.js",
-  "/test/page": "app/test/page.js",
-  "/token-debug/page": "app/token-debug/page.js"
-}
