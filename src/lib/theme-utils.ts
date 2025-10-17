@@ -1,13 +1,22 @@
+/**
+ * Theme Utilities - Helper functions for theme management
+ *
+ * Updated for Tailwind CSS v4 with hex color support.
+ * This file provides utilities for working with the updated design system
+ * that uses hex colors and proper theme management.
+ */
+
 import { parseToRgba, toHex } from 'color2k';
 
 // ===================================
-// 🎨 THEME UTILITIES CONFIGURATION
+// 🎨 THEME UTILITIES CONFIGURATION - TAILWIND v4
 // ===================================
 // 🚨 AI AGENT GUIDANCE:
-// - This file provides utilities for dynamic theme generation
-// - DO NOT modify unless fixing color generation bugs
+// - This file provides utilities for dynamic theme generation and management
+// - Updated for Tailwind CSS v4 hex color compatibility
 // - Uses color2k for color space conversions
-// - Follows the established 3-tier token system
+// - Follows the established 3-tier token system with hex values
+// - Includes theme management functions for light/dark mode
 // ===================================
 
 // Ramps define the saturation and lightness steps for palettes
@@ -36,11 +45,11 @@ const nRamp = [
 
 function hslToHex(h: number, s: number, l: number): string {
   // Convert HSL to RGB manually
-  s /= 100;
-  l /= 100;
-  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const sNorm = s / 100;
+  const lNorm = l / 100;
+  const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  const m = l - c / 2;
+  const m = lNorm - c / 2;
   let r = 0, g = 0, b = 0;
 
   if (0 <= h && h < 60) {
@@ -96,9 +105,9 @@ function generatePalette(baseColor: string, ramp: { s: number, l: number }[], ti
 // 🎨 SECONDARY COLOR SUGGESTIONS
 // ===================================
 
-export const generateSecondaryColorSuggestions = (_baseColor: string) => {
+export const generateSecondaryColorSuggestions = () => {
   // This is a placeholder for future functionality
-  // Parameter is prefixed with underscore to indicate intentional non-use
+  // Removed unused parameter to satisfy linter
   return [];
 };
 
@@ -146,7 +155,7 @@ function getContrastColor(hexColor: string): string {
   const g = rgba[1] / 255;
   const b = rgba[2] / 255;
   const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-  return luminance > 0.5 ? '#000000' : '#ffffff';
+  return luminance > 0.5 ? 'var(--n950)' : 'var(--n50)';
 }
 
 export function generateThemeFromColors({ primary, secondary, tinted }: { primary: string, secondary?: string, tinted: boolean }): GeneratedTheme {
@@ -169,8 +178,8 @@ export function generateThemeFromColors({ primary, secondary, tinted }: { primar
     '--muted-foreground': nPalette[6],
     '--accent': nPalette[2],
     '--accent-foreground': getContrastColor(nPalette[2]),
-    '--destructive': '#ef4444',
-    '--destructive-foreground': '#ffffff',
+    '--destructive': 'var(--red-500)',
+    '--destructive-foreground': 'var(--n50)',
     '--border': nPalette[3],
     '--input': nPalette[3],
     '--ring': pPalette[5],
@@ -197,8 +206,8 @@ export function generateThemeFromColors({ primary, secondary, tinted }: { primar
     '--muted-foreground': nPaletteDark[6],
     '--accent': nPaletteDark[2],
     '--accent-foreground': getContrastColor(nPaletteDark[2]),
-    '--destructive': '#dc2626',
-    '--destructive-foreground': '#ffffff',
+    '--destructive': 'var(--red-600)',
+    '--destructive-foreground': 'var(--n50)',
     '--border': nPaletteDark[3],
     '--input': nPaletteDark[3],
     '--ring': pPaletteDark[5],
@@ -206,4 +215,349 @@ export function generateThemeFromColors({ primary, secondary, tinted }: { primar
   };
 
   return { light: lightRecipe, dark: darkRecipe };
+}
+
+// ===================================
+// 🎨 THEME MANAGEMENT FUNCTIONS - TAILWIND v4
+// ===================================
+// 🚨 AI AGENT GUIDANCE:
+// - Added theme management functions for v4 compatibility
+// - These functions work with the new hex-based color system
+// - Provides utilities for theme switching and color access
+// ===================================
+
+// Theme types
+export type Theme = 'light' | 'dark' | 'system';
+
+// Color palette interface
+export interface ColorPalette {
+  primary: string;
+  secondary: string;
+  accent: string;
+  muted: string;
+  destructive: string;
+  background: string;
+  foreground: string;
+  card: string;
+  border: string;
+  input: string;
+  ring: string;
+}
+
+/**
+ * Get the current theme
+ */
+export function getTheme(): Theme {
+  if (typeof window === 'undefined') return 'system';
+
+  const html = document.documentElement;
+  if (html.classList.contains('dark')) return 'dark';
+  if (html.classList.contains('light')) return 'light';
+  return 'system';
+}
+
+/**
+ * Set the theme
+ */
+export function setTheme(theme: Theme): void {
+  if (typeof window === 'undefined') return;
+
+  const html = document.documentElement;
+
+  // Remove existing theme classes
+  html.classList.remove('light', 'dark');
+
+  if (theme === 'system') {
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    html.classList.add(systemTheme);
+  } else {
+    html.classList.add(theme);
+  }
+
+  // Store preference
+  localStorage.setItem('theme', theme);
+}
+
+/**
+ * Toggle between light and dark themes
+ */
+export function toggleTheme(): void {
+  const currentTheme = getTheme();
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  setTheme(newTheme);
+}
+
+/**
+ * Initialize theme from localStorage or system preference
+ */
+export function initializeTheme(): void {
+  if (typeof window === 'undefined') return;
+
+  const storedTheme = localStorage.getItem('theme') as Theme;
+  const theme = storedTheme || 'system';
+  setTheme(theme);
+}
+
+/**
+ * Get computed color value from CSS variable (hex format)
+ */
+export function getComputedColor(variableName: string): string {
+  if (typeof window === 'undefined') return '';
+
+  const computedStyle = getComputedStyle(document.documentElement);
+  return computedStyle.getPropertyValue(variableName).trim();
+}
+
+/**
+ * Get current theme colors (hex format)
+ */
+export function getCurrentThemeColors(): ColorPalette {
+  return {
+    primary: getComputedColor('--primary'),
+    secondary: getComputedColor('--secondary'),
+    accent: getComputedColor('--accent'),
+    muted: getComputedColor('--muted'),
+    destructive: getComputedColor('--destructive'),
+    background: getComputedColor('--background'),
+    foreground: getComputedColor('--foreground'),
+    card: getComputedColor('--card'),
+    border: getComputedColor('--border'),
+    input: getComputedColor('--input'),
+    ring: getComputedColor('--ring'),
+  };
+}
+
+/**
+ * Check if color is light (for text contrast) - works with hex
+ */
+export function isLightColor(hexColor: string): boolean {
+  if (!hexColor.startsWith('#')) {
+    // If it's not a hex color, check if it's a CSS variable
+    if (hexColor.startsWith('var(')) {
+      return false; // Default to dark for CSS variables
+    }
+    return false;
+  }
+
+  const rgb = parseToRgba(hexColor);
+  if (!rgb) return false;
+
+  const [r, g, b] = rgb;
+  const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+  return brightness > 155;
+}
+
+/**
+ * Generate accessible text color based on background (hex format)
+ */
+export function getContrastColor(backgroundColor: string): string {
+  return isLightColor(backgroundColor) ? 'var(--n950)' : 'var(--n50)';
+}
+
+/**
+ * Color utility class for hex color operations (Tailwind v4 compatible)
+ */
+export class ColorUtils {
+  /**
+   * Convert hex to RGB
+   */
+  static hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+    if (!hex.startsWith('#')) return null;
+
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  /**
+   * Convert RGB to hex
+   */
+  static rgbToHex(r: number, g: number, b: number): string {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  }
+
+  /**
+   * Get color brightness value (hex format)
+   */
+  static getBrightness(hex: string): number {
+    const rgb = this.hexToRgb(hex);
+    if (!rgb) return 0;
+
+    return ((rgb.r * 299) + (rgb.g * 587) + (rgb.b * 114)) / 1000;
+  }
+
+  /**
+   * Check if two colors have sufficient contrast
+   */
+  static hasContrast(color1: string, color2: string, ratio: number = 4.5): boolean {
+    const brightness1 = this.getBrightness(color1);
+    const brightness2 = this.getBrightness(color2);
+
+    const lighter = Math.max(brightness1, brightness2);
+    const darker = Math.min(brightness1, brightness2);
+
+    return (lighter + 5) / (darker + 5) >= ratio;
+  }
+
+  /**
+   * Validate hex color format
+   */
+  static isValidHex(hex: string): boolean {
+    return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
+  }
+
+  /**
+   * Ensure color is in hex format for Tailwind v4
+   */
+  static ensureHex(color: string): string {
+    if (this.isValidHex(color)) return color;
+
+    // If it's a CSS variable, return as-is
+    if (color.startsWith('var(')) return color;
+
+    // Try to convert from other formats (basic implementation)
+    if (color.startsWith('rgb')) {
+      const rgb = parseToRgba(color);
+      if (rgb) {
+        return this.rgbToHex(rgb[0], rgb[1], rgb[2]);
+      }
+    }
+
+    return color; // Return original if conversion fails
+  }
+}
+
+/**
+ * Theme context value for React Context
+ */
+export interface ThemeContextValue {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
+  colors: ColorPalette;
+  isDark: boolean;
+}
+
+/**
+ * Hook for theme management (if using React Context)
+ */
+export function useThemeHook(theme: Theme, setTheme: (theme: Theme) => void): ThemeContextValue {
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  };
+
+  const colors = getCurrentThemeColors();
+  const isDark = theme === 'dark';
+
+  return {
+    theme,
+    setTheme,
+    toggleTheme,
+    colors,
+    isDark,
+  };
+}
+
+/**
+ * CSS custom property names for all color tokens (v4 compatible)
+ */
+export const CSS_VARIABLES = {
+  // Semantic colors
+  BACKGROUND: '--background',
+  FOREGROUND: '--foreground',
+  PRIMARY: '--primary',
+  PRIMARY_FOREGROUND: '--primary-foreground',
+  SECONDARY: '--secondary',
+  SECONDARY_FOREGROUND: '--secondary-foreground',
+  ACCENT: '--accent',
+  ACCENT_FOREGROUND: '--accent-foreground',
+  MUTED: '--muted',
+  MUTED_FOREGROUND: '--muted-foreground',
+  DESTRUCTIVE: '--destructive',
+  DESTRUCTIVE_FOREGROUND: '--destructive-foreground',
+  CARD: '--card',
+  CARD_FOREGROUND: '--card-foreground',
+  POPOVER: '--popover',
+  POPOVER_FOREGROUND: '--popover-foreground',
+  BORDER: '--border',
+  INPUT: '--input',
+  RING: '--ring',
+
+  // Chart colors
+  CHART_1: '--chart-1',
+  CHART_2: '--chart-2',
+  CHART_3: '--chart-3',
+  CHART_4: '--chart-4',
+  CHART_5: '--chart-5',
+} as const;
+
+// ===================================
+// 🎨 TAILWIND v4 COLOR VALIDATION
+// ===================================
+// 🚨 AI AGENT GUIDANCE:
+// - Functions to validate color format compatibility
+// - Ensures all colors are hex format for v4 compatibility
+// ===================================
+
+/**
+ * Validate that all theme colors are in hex format
+ */
+export function validateThemeColors(): boolean {
+  const colors = getCurrentThemeColors();
+  let allValid = true;
+
+  Object.values(colors).forEach(color => {
+    if (color && !color.startsWith('var(') && !ColorUtils.isValidHex(color)) {
+      console.warn(`Invalid hex color format: ${color}`);
+      allValid = false;
+    }
+  });
+
+  return allValid;
+}
+
+/**
+ * Get theme compatibility report
+ */
+export function getThemeCompatibilityReport(): {
+  isCompatible: boolean;
+  issues: string[];
+  recommendations: string[];
+} {
+  const issues: string[] = [];
+  const recommendations: string[] = [];
+
+  // Check if colors are in hex format
+  const colors = getCurrentThemeColors();
+  Object.entries(colors).forEach(([key, value]) => {
+    if (value && !value.startsWith('var(') && !ColorUtils.isValidHex(value)) {
+      issues.push(`Color ${key} is not in hex format: ${value}`);
+    }
+  });
+
+  // Check for @theme block availability
+  if (typeof window !== 'undefined') {
+    const computedStyle = getComputedStyle(document.documentElement);
+    const hasThemeColors = computedStyle.getPropertyValue('--color-background').trim() !== '';
+
+    if (!hasThemeColors) {
+      issues.push('@theme block colors not available');
+      recommendations.push('Ensure @theme block is properly configured in globals.css');
+    }
+  }
+
+  // Recommendations for v4 compatibility
+  recommendations.push('Use semantic tokens in components instead of hard-coded colors');
+  recommendations.push('Test theme switching in both light and dark modes');
+  recommendations.push('Verify color contrast meets accessibility standards');
+
+  return {
+    isCompatible: issues.length === 0,
+    issues,
+    recommendations,
+  };
 }

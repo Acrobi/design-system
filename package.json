@@ -1,23 +1,52 @@
 {
-  "name": "acrobi-design-system",
-  "version": "0.1.0",
-  "private": true,
-  "description": "The official design system for Acrobi.",
+  "name": "@acrobi/design-system",
+  "version": "1.0.0",
+  "private": false,
+  "description": "The official design system for Acrobi - semantic token support with CLI theme management.",
   "author": "Brian Porter",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Acrobi/design-system.git"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "cli",
+    "README.md"
+  ],
+  "bin": {
+    "acrobi-design": "cli/index.js"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && npm run build:lib",
+    "build:lib": "tsc --project tsconfig.build.json && rollup -c",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "prepublishOnly": "npm run build",
+    "cli": "node cli/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
+  "keywords": [
+    "design-system",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "ui-components",
+    "semantic-tokens",
+    "theme-management",
+    "acrobi"
+  ],
+  "license": "MIT",
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "color2k": "^2.0.3",
@@ -29,17 +58,26 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "tw-animate-css": "^1.3.6",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.19.9",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
     "eslint-plugin-tailwindcss": "^3.18.2",
+    "inquirer": "^10.0.2",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
   },
@@ -48,5 +86,13 @@
       "@types/react": "19.1.2",
       "@types/react-dom": "19.1.2"
     }
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "bugs": {
+    "url": "https://github.com/Acrobi/design-system/issues"
+  },
+  "homepage": "https://github.com/Acrobi/design-system#readme"
 }

@@ -1,0 +1,9 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useTheme } from '../components/ui/theme-provider';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+export default function ThemeTestPage() {
+    const { theme, setTheme, toggleTheme, mode, toggleMode, resolvedMode } = useTheme();
+    return (_jsx("div", { className: "container mx-auto p-8", children: _jsxs(Card, { children: [_jsx(CardHeader, { children: _jsx(CardTitle, { children: "Theme System Debug" }) }), _jsxs(CardContent, { className: "space-y-4", children: [_jsxs("div", { children: [_jsx("strong", { children: "Current Mode:" }), " ", mode, " (resolved: ", resolvedMode, ")"] }), _jsxs("div", { children: [_jsx("strong", { children: "Current Theme:" }), " ", theme] }), _jsxs("div", { className: "space-y-2", children: [_jsx(Button, { onClick: toggleMode, children: "Toggle Mode" }), _jsx(Button, { onClick: toggleTheme, variant: "outline", children: "Toggle Theme" })] }), _jsx("div", { className: "grid grid-cols-3 gap-2", children: ['base', 'blue', 'purple', 'green', 'orange', 'red'].map((t) => (_jsx(Button, { onClick: () => setTheme(t), variant: theme === t ? 'default' : 'outline', size: "sm", children: t }, t))) }), _jsxs("div", { className: "space-y-2", children: [_jsx("div", { className: "p-4 bg-primary text-primary-foreground rounded", children: "Primary Color Test" }), _jsx("div", { className: "p-4 bg-secondary text-secondary-foreground rounded", children: "Secondary Color Test" }), _jsx("div", { className: "p-4 border rounded", children: "Border Test" })] })] })] }) }));
+}
+//# sourceMappingURL=theme-test.js.map

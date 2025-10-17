@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from '../components/ui/theme-provider'
 import { SensoryProvider } from '../components/ui/sensory-provider'
 import { GlobalNavigation } from '../components/ui/global-navigation'
+import { RealTimeThemeIndicator } from '../components/ui/real-time-theme-indicator'
 
 // ===================================
 // 📱 APP ROOT COMPONENT
@@ -90,6 +91,17 @@ export default function App({ Component, pageProps }: AppProps) {
             {/* Global navigation - appears on all pages */}
             {/* 🚨 DO NOT remove navigation unless creating page-specific layouts */}
             <GlobalNavigation />
+
+            {/* Real-time theme monitoring indicator - appears on all pages */}
+            {/* 🚨 DO NOT remove this component - essential for theme development */}
+            <div className="fixed top-20 right-4 z-50">
+              <RealTimeThemeIndicator
+                compact={true}
+                showChanges={true}
+                showControls={false}
+                className="shadow-lg border"
+              />
+            </div>
 
             {/* Page content - rendered component from pages directory */}
             {/* 🚨 DO NOT modify this props spreading */}

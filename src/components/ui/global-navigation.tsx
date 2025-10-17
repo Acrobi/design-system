@@ -19,6 +19,13 @@ interface Component {
   description: string
 }
 
+interface StyleCategory {
+  name: string
+  href: string
+  description: string
+  icon?: string
+}
+
 // Main navigation items
 const navigationItems: NavigationItem[] = [
   {
@@ -30,11 +37,50 @@ const navigationItems: NavigationItem[] = [
     name: 'Documentation',
     href: '/docs',
     description: 'Complete design system guide & API reference'
+  }
+]
+
+// Styles categories for token management
+const styleCategories: StyleCategory[] = [
+  {
+    name: 'Typography',
+    href: '/styles/typography',
+    description: 'Font families, weights, sizes, line heights, letter spacing'
   },
   {
-    name: 'Theme Test',
-    href: '/theme-test',
-    description: 'Theme system debugging page'
+    name: 'Colors',
+    href: '/styles/colors',
+    description: 'Grey scale, base theme palette, color swatches'
+  },
+  {
+    name: 'Spacing & Layout',
+    href: '/styles/spacing',
+    description: 'Spacing units and breakpoints'
+  },
+  {
+    name: 'Shape & Form',
+    href: '/styles/shape',
+    description: 'Border radii, widths, and styles'
+  },
+  {
+    name: 'Elevation & Shadow',
+    href: '/styles/elevation',
+    description: 'Box shadows and text shadows'
+  },
+  {
+    name: 'Opacity',
+    href: '/styles/opacity',
+    description: 'Opacity values and transparency'
+  },
+  {
+    name: 'Layers',
+    href: '/styles/layers',
+    description: 'Z-index values tied to use cases'
+  },
+  {
+    name: 'Motion',
+    href: '/styles/motion',
+    description: 'Transition durations and animation easing'
   }
 ]
 
@@ -42,7 +88,7 @@ const navigationItems: NavigationItem[] = [
 const components: Component[] = [
   {
     name: 'Button',
-    href: '/test',
+    href: '/button',
     description: 'Button component test page'
   },
   {
@@ -115,6 +161,41 @@ export function GlobalNavigation() {
                 {item.name}
               </Link>
             ))}
+
+            {/* Styles Dropdown */}
+            <div className="relative group">
+              <Button
+                variant={router.pathname.startsWith('/styles') ? "default" : "ghost"}
+                size="sm"
+                className="px-3 py-1"
+              >
+                Styles
+                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Button>
+
+              {/* Styles Dropdown Menu */}
+              <div className="absolute top-full left-0 mt-1 min-w-[320px] rounded-md border bg-popover shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div className="py-1">
+                  <div className="px-4 py-2 text-xs font-medium text-muted-foreground border-b">
+                    Token Management
+                  </div>
+                  {styleCategories.map((category) => (
+                    <Link
+                      key={category.href}
+                      href={category.href}
+                      className={`block px-4 py-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground ${
+                        router.pathname === category.href ? 'bg-accent text-accent-foreground' : ''
+                      }`}
+                    >
+                      <div className="font-medium">{category.name}</div>
+                      <div className="text-xs text-muted-foreground">{category.description}</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* Components Dropdown */}
             <div className="relative group">
@@ -216,6 +297,30 @@ export function GlobalNavigation() {
                     </div>
                 </Link>
               ))}
+
+              {/* Styles in Mobile Menu */}
+              <div className="pt-2 mt-2 border-t">
+                <div className="px-3 py-2 text-xs font-medium text-muted-foreground">
+                  Token Management
+                </div>
+                {styleCategories.map((category) => (
+                  <Link
+                    key={category.href}
+                    href={category.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                      router.pathname === category.href
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-foreground/60 hover:text-foreground hover:bg-accent'
+                    }`}
+                  >
+                    <div>
+                      <div>{category.name}</div>
+                      <div className="text-xs opacity-60">{category.description}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
 
               {/* Components in Mobile Menu */}
               <div className="pt-2 mt-2 border-t">

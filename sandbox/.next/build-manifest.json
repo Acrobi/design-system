@@ -1,0 +1,53 @@
+{
+  "pages": {
+    "/_app": [
+      "static/chunks/22115_next_dist_compiled_next-devtools_index_cc314a81.js",
+      "static/chunks/22115_next_dist_compiled_a57a49aa._.js",
+      "static/chunks/22115_next_dist_shared_lib_7db94f86._.js",
+      "static/chunks/22115_next_dist_client_38dd0a47._.js",
+      "static/chunks/22115_next_dist_7d629aec._.js",
+      "static/chunks/22115_next_app_1e292913.js",
+      "static/chunks/[next]_entry_page-loader_ts_e7a4dd52._.js",
+      "static/chunks/e8234_react-dom_f01e77ed._.js",
+      "static/chunks/bafc8__pnpm_3d0c1932._.js",
+      "static/chunks/[root-of-the-server]__9ba85d11._.js",
+      "static/chunks/REPOS_Acrobi_design-system_Acrobi-Design-System_pages__app_2da965e7._.js",
+      "static/chunks/turbopack-REPOS_Acrobi_design-system_Acrobi-Design-System_pages__app_a4792ac7._.js"
+    ],
+    "/_error": [
+      "static/chunks/22115_next_dist_compiled_next-devtools_index_cc314a81.js",
+      "static/chunks/22115_next_dist_compiled_a57a49aa._.js",
+      "static/chunks/22115_next_dist_shared_lib_81deb573._.js",
+      "static/chunks/22115_next_dist_client_38dd0a47._.js",
+      "static/chunks/22115_next_dist_d93496a9._.js",
+      "static/chunks/22115_next_error_2baa5bbe.js",
+      "static/chunks/[next]_entry_page-loader_ts_51c07692._.js",
+      "static/chunks/e8234_react-dom_f01e77ed._.js",
+      "static/chunks/bafc8__pnpm_3d0c1932._.js",
+      "static/chunks/[root-of-the-server]__3fd7962e._.js",
+      "static/chunks/REPOS_Acrobi_design-system_Acrobi-Design-System_pages__error_2da965e7._.js",
+      "static/chunks/turbopack-REPOS_Acrobi_design-system_Acrobi-Design-System_pages__error_d0bfbb79._.js"
+    ]
+  },
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [
+    "static/chunks/22115_next_dist_build_polyfills_polyfill-nomodule.js"
+  ],
+  "lowPriorityFiles": [
+    "static/development/_ssgManifest.js",
+    "static/development/_buildManifest.js"
+  ],
+  "rootMainFiles": [
+    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_c2de834b._.js",
+    "static/chunks/22115_next_dist_compiled_react-dom_bca7c046._.js",
+    "static/chunks/22115_next_dist_compiled_next-devtools_index_a0c259cc.js",
+    "static/chunks/22115_next_dist_compiled_699675c1._.js",
+    "static/chunks/22115_next_dist_client_62ac7c43._.js",
+    "static/chunks/22115_next_dist_f4f9cbf5._.js",
+    "static/chunks/78c05_@swc_helpers_cjs_a25a7cec._.js",
+    "static/chunks/REPOS_Acrobi_design-system_Acrobi-Design-System_a0ff3932._.js",
+    "static/chunks/turbopack-REPOS_Acrobi_design-system_Acrobi-Design-System_5f4c6e18._.js"
+  ],
+  "ampFirstPages": []
+}

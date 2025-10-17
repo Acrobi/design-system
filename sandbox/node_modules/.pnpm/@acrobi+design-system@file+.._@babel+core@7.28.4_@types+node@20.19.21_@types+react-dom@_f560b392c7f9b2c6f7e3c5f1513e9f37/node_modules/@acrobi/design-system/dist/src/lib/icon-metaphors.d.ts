@@ -1,0 +1,3 @@
+export declare const iconMetaphors: readonly ["add", "remove", "delete", "edit", "save", "close", "search", "upload", "download", "copy", "send", "chevron-down", "chevron-up", "chevron-left", "chevron-right", "arrow-left", "arrow-right", "external-link", "menu", "user", "users", "home", "settings", "bell", "notification", "heart", "star-filled", "star-empty", "image", "file", "folder", "calendar", "clock", "info", "success", "warning", "error", "help", "eye-open", "eye-closed", "sun", "moon", "play", "pause", "stop", "placeholder"];
+export type IconMetaphor = typeof iconMetaphors[number];
+//# sourceMappingURL=icon-metaphors.d.ts.map

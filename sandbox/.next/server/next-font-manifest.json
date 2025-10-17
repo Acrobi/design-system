@@ -1,0 +1,22 @@
+{
+  "app": {
+    "[project]/REPOS/Acrobi/design-system/Acrobi-Design-System/app/_not-found/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/REPOS/Acrobi/design-system/Acrobi-Design-System/app/dark-mode-test/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/REPOS/Acrobi/design-system/Acrobi-Design-System/app/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/REPOS/Acrobi/design-system/Acrobi-Design-System/app/test/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/REPOS/Acrobi/design-system/Acrobi-Design-System/app/token-debug/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

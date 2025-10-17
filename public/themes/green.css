@@ -11,19 +11,19 @@
 /* Apply green theme variables to root element */
 :root {
   /* Primary color scheme - Natural green */
-  --primary: 142.1 76.2% 36.3%;
-  --primary-foreground: 355.7 100% 97.3%;
+  --primary: #15803d;
+  --primary-foreground: #f0fdf4;
 
   /* Supporting colors that work with green primary */
-  --secondary: 138 20% 95%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --accent: 138 20% 95%;
-  --accent-foreground: 222.2 84% 4.9%;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --accent: #f2f2f2;
+  --accent-foreground: #171717;
 
   /* Destructive and other functional colors */
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
 
   /* Interactive elements */
-  --ring: 142.1 76.2% 36.3%;
+  --ring: #15803d;
 }

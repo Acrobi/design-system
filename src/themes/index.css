@@ -1,0 +1,187 @@
+/* ===================================
+   🎨 THEME SYSTEM - SEMANTIC TOKEN MAPPING
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This file extends the theme system with additional semantic mappings
+   - DO NOT add hard-coded values - ALL values must reference primitive tokens
+   - DO NOT reference primitive tokens directly in components
+   - DO modify these values to change the visual design across all themes
+   - DO add new semantic tokens as needed for new design patterns
+   - All theme variations should be implemented as separate CSS files
+   ===================================*/
+
+/* ===================================
+   🌈 BASE THEME EXTENSIONS
+   ===================================
+   Additional semantic tokens that extend the base theme system
+   These tokens provide more granular control for specific UI patterns
+   ===================================*/
+
+:root {
+  /* Status Colors - Semantic mapping for different states */
+  --status-success: var(--green-600);
+  --status-success-foreground: var(--n50);
+  --status-warning: var(--orange-500);
+  --status-warning-foreground: var(--n950);
+  --status-error: var(--red-600);
+  --status-error-foreground: var(--n50);
+  --status-info: var(--blue-600);
+  --status-info-foreground: var(--n50);
+
+  /* Interactive States - Semantic mapping for interactive elements */
+  --interactive-hover: var(--p700);
+  --interactive-active: var(--p800);
+  --interactive-disabled: var(--n300);
+  --interactive-disabled-foreground: var(--n400);
+
+  /* Surface Variants - Different surface levels for depth */
+  --surface-1: var(--n50); /* Lightest surface */
+  --surface-2: var(--n100); /* Light surface */
+  --surface-3: var(--n200); /* Medium surface */
+  --surface-4: var(--n300); /* Dark surface */
+  --surface-5: var(--n400); /* Darkest surface */
+
+  /* Text Variants - Different text opacities for hierarchy */
+  --text-primary: var(--foreground);
+  --text-secondary: var(--muted-foreground);
+  --text-tertiary: var(--n400);
+  --text-placeholder: var(--n300);
+  --text-disabled: var(--n300);
+
+  /* Border Variants - Different border opacities for hierarchy */
+  --border-strong: var(--n400);
+  --border-medium: var(--n300);
+  --border-subtle: var(--n200);
+  --border-subtler: var(--n100);
+
+  /* Focus States - Enhanced focus indicators */
+  --focus-ring: var(--ring);
+  --focus-ring-strong: var(--p600);
+  --focus-ring-subtle: var(--p300);
+
+  /* Gradient Definitions - Semantic gradients using primitive colors */
+  --gradient-primary: linear-gradient(135deg, var(--p600), var(--p500));
+  --gradient-secondary: linear-gradient(135deg, var(--n200), var(--n100));
+  --gradient-success: linear-gradient(135deg, var(--green-600), var(--green-500));
+  --gradient-warning: linear-gradient(135deg, var(--orange-500), var(--orange-400));
+  --gradient-error: linear-gradient(135deg, var(--red-600), var(--red-500));
+}
+
+/* ===================================
+   🌙 DARK MODE THEME EXTENSIONS
+   ===================================
+   Dark mode overrides for the extended semantic tokens
+   ===================================*/
+
+.dark {
+  /* Status Colors - Dark mode adjustments */
+  --status-success: var(--green-400);
+  --status-success-foreground: var(--n950);
+  --status-warning: var(--orange-400);
+  --status-warning-foreground: var(--n950);
+  --status-error: var(--red-400);
+  --status-error-foreground: var(--n950);
+  --status-info: var(--blue-400);
+  --status-info-foreground: var(--n950);
+
+  /* Interactive States - Dark mode adjustments */
+  --interactive-hover: var(--p300);
+  --interactive-active: var(--p200);
+  --interactive-disabled: var(--n700);
+  --interactive-disabled-foreground: var(--n600);
+
+  /* Surface Variants - Dark mode surface levels */
+  --surface-1: var(--n900); /* Darkest surface */
+  --surface-2: var(--n800); /* Dark surface */
+  --surface-3: var(--n700); /* Medium surface */
+  --surface-4: var(--n600); /* Light surface */
+  --surface-5: var(--n500); /* Lightest surface */
+
+  /* Text Variants - Dark mode text opacities */
+  --text-primary: var(--foreground);
+  --text-secondary: var(--muted-foreground);
+  --text-tertiary: var(--n600);
+  --text-placeholder: var(--n500);
+  --text-disabled: var(--n600);
+
+  /* Border Variants - Dark mode border opacities */
+  --border-strong: var(--n600);
+  --border-medium: var(--n700);
+  --border-subtle: var(--n800);
+  --border-subtler: var(--n900);
+
+  /* Focus States - Dark mode focus indicators */
+  --focus-ring: var(--ring);
+  --focus-ring-strong: var(--p300);
+  --focus-ring-subtle: var(--p600);
+
+  /* Gradient Definitions - Dark mode gradients */
+  --gradient-primary: linear-gradient(135deg, var(--p400), var(--p500));
+  --gradient-secondary: linear-gradient(135deg, var(--n800), var(--n700));
+  --gradient-success: linear-gradient(135deg, var(--green-400), var(--green-500));
+  --gradient-warning: linear-gradient(135deg, var(--orange-400), var(--orange-500));
+  --gradient-error: linear-gradient(135deg, var(--red-400), var(--red-500));
+}
+
+/* ===================================
+   🎭 THEME VARIATIONS
+   ===================================
+   Additional theme variations can be added here
+   Each theme should follow the same semantic token structure
+   ===================================*/
+
+/* Example: High Contrast Theme */
+.theme-high-contrast {
+  --background: var(--n950); /* Darkest possible background */
+  --foreground: var(--n50); /* Lightest possible foreground */
+  --card: var(--n950); /* Darkest possible card */
+  --card-foreground: var(--n50); /* Lightest possible card text */
+  --border: var(--n50); /* Lightest possible border */
+  --text-primary: var(--n50); /* Lightest possible text */
+  --text-secondary: var(--n100); /* Light gray for secondary text */
+  --focus-ring: var(--n50); /* Lightest possible focus ring */
+}
+
+/* Example: Blue Theme Variation */
+.theme-blue {
+  --primary: var(--blue-600);
+  --primary-foreground: var(--n50);
+  --gradient-primary: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+  --focus-ring: var(--blue-400);
+}
+
+/* Example: Green Theme Variation */
+.theme-green {
+  --primary: var(--green-600);
+  --primary-foreground: var(--n50);
+  --gradient-primary: linear-gradient(135deg, var(--green-600), var(--green-500));
+  --focus-ring: var(--green-400);
+}
+
+/* ===================================
+   📱 RESPONSIVE THEME ADJUSTMENTS
+   ===================================
+   Theme adjustments for different screen sizes
+   ===================================*/
+
+/* Mobile theme adjustments */
+@media (max-width: 768px) {
+  :root {
+    /* Adjust spacing for smaller screens */
+    --container-sm: var(--space-3);
+    --container-md: var(--space-4);
+    --container-lg: var(--space-6);
+    --container-xl: var(--space-8);
+  }
+}
+
+/* Large screen theme adjustments */
+@media (min-width: 1024px) {
+  :root {
+    /* Enhance spacing for larger screens */
+    --container-sm: var(--space-6);
+    --container-md: var(--space-8);
+    --container-lg: var(--space-12);
+    --container-xl: var(--space-16);
+  }
+}

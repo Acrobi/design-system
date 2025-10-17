@@ -1,0 +1,678 @@
+@import "tailwindcss";
+
+/* ===================================
+   🎯 TAILWIND CSS v4 THEME CONFIGURATION
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This @theme block is REQUIRED for Tailwind CSS v4
+   - DO NOT remove this block - it defines all base utilities
+   - DO NOT hard-code values here - reference primitive tokens
+   - All values use CSS custom properties defined below
+   ===================================*/
+
+@theme {
+  /* Font families - reference primitive tokens */
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
+
+  /* Default spacing and sizing - reference primitive tokens */
+  --spacing-xs: var(--space-1);
+  --spacing-sm: var(--space-2);
+  --spacing-md: var(--space-4);
+  --spacing-lg: var(--space-6);
+  --spacing-xl: var(--space-8);
+
+  /* Default border radius - reference primitive tokens */
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-md: var(--radius-md);
+  --border-radius-sm: var(--radius-sm);
+
+  /* Default animation duration */
+  --duration-150: var(--duration-fast);
+  --duration-200: var(--duration-normal);
+  --duration-300: var(--duration-slow);
+
+  /* Default easing functions */
+  --ease-in-out: var(--ease-in-out);
+  --ease-out: var(--ease-out);
+  --ease-in: var(--ease-in);
+
+  /* ===================================
+     🌙 DARK MODE THEME CONFIGURATION
+     ===================================
+     🚨 CRITICAL: Dark mode tokens must be defined in @theme block
+     These get used when .dark class is applied to html element
+     ===================================*/
+
+  /* Dark mode color tokens */
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-card: #111111;
+  --color-card-foreground: #ffffff;
+  --color-popover: #111111;
+  --color-popover-foreground: #ffffff;
+  --color-primary: #a855f7;
+  --color-primary-foreground: #000000;
+  --color-secondary: #222222;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #333333;
+  --color-muted-foreground: #999999;
+  --color-accent: #444444;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #333333;
+  --color-input: #222222;
+  --color-ring: #a855f7;
+
+  /* Status colors for dark mode */
+  --color-success: #4ade80;
+  --color-success-foreground: #000000;
+  --color-warning: #fb923c;
+  --color-warning-foreground: #000000;
+  --color-info: #60a5fa;
+  --color-info-foreground: #000000;
+}
+
+/* ===================================
+   🏗️ TIER 1: PRIMITIVE DESIGN TOKENS
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - These are RAW, context-less hex values - NEVER use directly in components
+   - DO NOT modify the naming convention (--p50, --n100, etc.)
+   - DO NOT add hard-coded colors anywhere else in the system
+   - ONLY modify if adding new primitive scales
+   - Components MUST use semantic tokens from Tier 2 below
+   ===================================*/
+
+:root {
+  /* Color Primitives - Hex format for Tailwind CSS v4 compatibility */
+  /* Primary color scale - purple brand colors (hex format) */
+  --p50: #faf5ff;
+  --p100: #f3e8ff;
+  --p200: #e9d5ff;
+  --p300: #d8b4fe;
+  --p400: #c084fc;
+  --p500: #a855f7;
+  --p600: #9333ea;
+  --p700: #7c3aed;
+  --p800: #6b21a8;
+  --p900: #581c87;
+  --p950: #3b0764;
+
+  /* Neutral color scale - gray scale (hex format) */
+  --n50: #fafafa;
+  --n100: #f5f5f5;
+  --n200: #e5e5e5;
+  --n300: #d4d4d4;
+  --n400: #a3a3a3;
+  --n500: #737373;
+  --n600: #525252;
+  --n700: #404040;
+  --n800: #262626;
+  --n900: #171717;
+  --n950: #0a0a0a;
+
+  /* Extended color palette - Blue (hex format) */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --blue-950: #172554;
+
+  /* Extended color palette - Green (hex format) */
+  --green-50: #f0fdf4;
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
+  --green-950: #052e16;
+
+  /* Extended color palette - Red (hex format) */
+  --red-50: #fef2f2;
+  --red-100: #fee2e2;
+  --red-200: #fecaca;
+  --red-300: #fca5a5;
+  --red-400: #f87171;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --red-800: #991b1b;
+  --red-900: #7f1d1d;
+  --red-950: #450a0a;
+
+  /* Extended color palette - Orange (hex format) */
+  --orange-50: #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --orange-700: #c2410c;
+  --orange-800: #9a3412;
+  --orange-900: #7c2d12;
+  --orange-950: #431407;
+
+  /* Typography Primitives - Font stacks */
+  /* DO NOT change these unless updating the entire design system font strategy */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Fluid Typography - responsive text sizes using clamp() */
+  /* DO NOT modify the clamp() formulas without understanding fluid typography principles */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.4vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.9rem + 1.8vw, 3rem);
+
+  /* Spacing Primitives - Fixed spacing values */
+  /* DO NOT modify these unless adding new spacing scale points */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Shadow Primitives - Elevation shadows */
+  /* DO NOT modify these unless updating the entire shadow system */
+  --shadow-xs: 0 1px 2px 0 color-mix(in srgb, var(--n950) 5%, transparent);
+  --shadow-sm: 0 1px 3px 0 color-mix(in srgb, var(--n950) 10%, transparent), 0 1px 2px -1px color-mix(in srgb, var(--n950) 10%, transparent);
+  --shadow-md: 0 4px 6px -1px color-mix(in srgb, var(--n950) 10%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--n950) 10%, transparent);
+  --shadow-lg: 0 10px 15px -3px color-mix(in srgb, var(--n950) 10%, transparent), 0 4px 6px -4px color-mix(in srgb, var(--n950) 10%, transparent);
+  --shadow-xl: 0 20px 25px -5px color-mix(in srgb, var(--n950) 10%, transparent), 0 8px 10px -6px color-mix(in srgb, var(--n950) 10%, transparent);
+
+  /* Border Radius Primitives - Corner rounding */
+  /* DO NOT modify these unless updating the entire radius system */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Z-Index Primitives - Stacking context */
+  /* DO NOT modify these values without understanding z-index hierarchy */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* Motion Primitives - Animation timing */
+  /* DO NOT modify these unless updating the entire motion system */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===================================
+   🎯 TIER 2: SEMANTIC DESIGN TOKENS
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - These are ALIASES that give primitives purpose
+   - COMPONENTS MUST USE THESE TOKENS - never primitives directly
+   - DO NOT reference primitive tokens (--p50, --n100, etc.) in components
+   - DO modify these values to change the visual design
+   - DO add new semantic tokens as needed for new design patterns
+   ===================================*/
+
+:root {
+  /* Color Semantics - Maps primitives to UI purposes */
+  /* These are the ONLY color tokens components should use */
+  /* LIGHT THEME - Professional purple brand with gray neutral base */
+  --background: #ffffff; /* Pure white for background - necessary exception */
+  --foreground: var(--n900); /* Dark gray for text */
+  --card: #ffffff; /* Pure white for cards - necessary exception */
+  --card-foreground: var(--n900); /* Dark gray for card text */
+  --popover: #ffffff; /* Pure white for popovers - necessary exception */
+  --popover-foreground: var(--n900); /* Dark gray for popover text */
+  --primary: var(--p600); /* Medium purple for primary actions */
+  --primary-foreground: var(--n50); /* Light gray for primary text */
+  --secondary: var(--n100); /* Light gray for secondary backgrounds */
+  --secondary-foreground: var(--n900); /* Dark gray for secondary text */
+  --muted: var(--n100); /* Light gray for muted backgrounds */
+  --muted-foreground: var(--n500); /* Medium gray for muted text */
+  --accent: var(--n100); /* Light gray for accent backgrounds */
+  --accent-foreground: var(--n900); /* Dark gray for accent text */
+  --destructive: var(--red-500); /* Red for destructive actions */
+  --destructive-foreground: var(--n50); /* Light gray for destructive text */
+  --border: var(--n200); /* Light gray for borders */
+  --input: var(--n200); /* Light gray for inputs */
+  --ring: var(--p400); /* Light purple for focus rings */
+
+  /* Status colors for feedback states */
+  --success: var(--green-600); /* Success states */
+  --success-foreground: var(--n50); /* Success text */
+  --warning: var(--orange-600); /* Warning states */
+  --warning-foreground: var(--n50); /* Warning text */
+  --info: var(--blue-600); /* Information states */
+  --info-foreground: var(--n50); /* Info text */
+
+  /* Chart colors for data visualization */
+  --chart-1: var(--p600); /* Primary purple */
+  --chart-2: var(--p500); /* Medium purple */
+  --chart-3: var(--p400); /* Light purple */
+  --chart-4: var(--p300); /* Lighter purple */
+  --chart-5: var(--p200); /* Lightest purple */
+
+  /* Typography Semantics - Maps font primitives to purposes */
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-code: var(--font-mono);
+
+  /* Spacing Semantics - Maps spacing primitives to UI patterns */
+  --container-sm: var(--space-4);
+  --container-md: var(--space-6);
+  --container-lg: var(--space-8);
+  --container-xl: var(--space-12);
+
+  /* Shadow Semantics - Maps shadow primitives to UI elements */
+  --shadow-card: var(--shadow-sm);
+  --shadow-dropdown: var(--shadow-lg);
+  --shadow-modal: var(--shadow-xl);
+
+  /* Border Radius Semantics - Maps radius primitives to UI elements */
+  --radius-card: var(--radius-lg);
+  --radius-button: var(--radius-md);
+  --radius-input: var(--radius-md);
+
+  /* Motion Semantics - Pre-defined transition shortcuts */
+  --transition-colors: color var(--duration-normal) var(--ease-in-out),
+                     background-color var(--duration-normal) var(--ease-in-out),
+                     border-color var(--duration-normal) var(--ease-in-out);
+  --transition-transform: transform var(--duration-normal) var(--ease-in-out);
+  --transition-all: all var(--duration-normal) var(--ease-in-out);
+}
+
+/* ===================================
+   🌙 DARK MODE: ALREADY DEFINED IN @theme BLOCK
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Dark mode colors are now defined in @theme block above
+   - Tailwind v4 uses --color-* tokens in @theme for dark mode
+   - .dark class is handled automatically by Tailwind
+   - No need for separate .dark selector overrides
+   ===================================*/
+  --success: var(--green-400); /* Light green for success states */
+  --success-foreground: var(--n950); /* Darkest gray for success text */
+  --warning: var(--orange-400); /* Light orange for warning states */
+  --warning-foreground: var(--n950); /* Darkest gray for warning text */
+  --info: var(--blue-400); /* Light blue for information states */
+  --info-foreground: var(--n950); /* Darkest gray for info text */
+
+  /* Chart colors - Dark mode adjustments */
+  --chart-1: var(--p400); /* Light purple */
+  --chart-2: var(--p500); /* Medium purple */
+  --chart-3: var(--p600); /* Dark purple */
+  --chart-4: var(--p700); /* Darker purple */
+  --chart-5: var(--p800); /* Darkest purple */
+
+  /* Shadow Semantics - Dark Mode Adjustments */
+  --shadow-card: var(--shadow-sm);
+  --shadow-dropdown: 0 4px 6px -1px color-mix(in srgb, var(--n950) 30%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--n950) 30%, transparent);
+  --shadow-modal: 0 20px 25px -5px color-mix(in srgb, var(--n950) 30%, transparent), 0 8px 10px -6px color-mix(in srgb, var(--n950) 30%, transparent);
+}
+
+/* ===================================
+   🎨 THEME FILE REFERENCES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Color themes are in separate CSS files in /themes directory
+   - DO NOT add theme overrides here - use /themes/{theme-name}.css files
+   - This follows the proper architecture: separate theme files
+   - Theme provider dynamically loads the appropriate theme CSS file
+   ===================================*/
+
+/* ===================================
+   🏢 CLIENT THEME OVERRIDES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This section is reserved for client-specific theme overrides
+   - DO NOT add styles here unless implementing client theming
+   - Client themes would follow pattern: .theme-client-a { --primary: ...; }
+   - This allows multiple clients to override semantic tokens
+   - DO NOT modify this section structure
+   ===================================*/
+
+/* ===================================
+   📦 COLLECTION THEME OVERRIDES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This section is reserved for collection-specific overrides
+   - DO NOT add styles here unless implementing collection theming
+   - Collections would follow pattern: .collection-xyz { --primary: ...; }
+   - This allows specific UI collections to have unique theming
+   - DO NOT modify this section structure
+   ===================================*/
+
+/* ===================================
+   ⚙️ TAILWIND CONFIGURATION
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - The @theme block provides configuration for Tailwind CSS v4
+   - DO NOT modify the structure of this block
+   - DO update the color mappings if adding new semantic tokens
+   - DO NOT reference primitive tokens directly here
+   - ALWAYS use semantic tokens (--primary, --background, etc.)
+   - NOTE: @theme is valid in Tailwind CSS v4 and now uses HEX format
+   ===================================*/
+
+@theme {
+  /* Map semantic tokens to Tailwind utilities (hex format for v4 compatibility) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Extended color palette - direct hex access for Tailwind utilities */
+  --color-gray-50: var(--n50);
+  --color-gray-100: var(--n100);
+  --color-gray-200: var(--n200);
+  --color-gray-300: var(--n300);
+  --color-gray-400: var(--n400);
+  --color-gray-500: var(--n500);
+  --color-gray-600: var(--n600);
+  --color-gray-700: var(--n700);
+  --color-gray-800: var(--n800);
+  --color-gray-900: var(--n900);
+  --color-gray-950: var(--n950);
+
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800);
+  --color-blue-900: var(--blue-900);
+  --color-blue-950: var(--blue-950);
+
+  --color-purple-50: var(--p50);
+  --color-purple-100: var(--p100);
+  --color-purple-200: var(--p200);
+  --color-purple-300: var(--p300);
+  --color-purple-400: var(--p400);
+  --color-purple-500: var(--p500);
+  --color-purple-600: var(--p600);
+  --color-purple-700: var(--p700);
+  --color-purple-800: var(--p800);
+  --color-purple-900: var(--p900);
+  --color-purple-950: var(--p950);
+
+  --color-green-50: var(--green-50);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200);
+  --color-green-300: var(--green-300);
+  --color-green-400: var(--green-400);
+  --color-green-500: var(--green-500);
+  --color-green-600: var(--green-600);
+  --color-green-700: var(--green-700);
+  --color-green-800: var(--green-800);
+  --color-green-900: var(--green-900);
+  --color-green-950: var(--green-950);
+
+  --color-red-50: var(--red-50);
+  --color-red-100: var(--red-100);
+  --color-red-200: var(--red-200);
+  --color-red-300: var(--red-300);
+  --color-red-400: var(--red-400);
+  --color-red-500: var(--red-500);
+  --color-red-600: var(--red-600);
+  --color-red-700: var(--red-700);
+  --color-red-800: var(--red-800);
+  --color-red-900: var(--red-900);
+  --color-red-950: var(--red-950);
+
+  --color-orange-50: var(--orange-50);
+  --color-orange-100: var(--orange-100);
+  --color-orange-200: var(--orange-200);
+  --color-orange-300: var(--orange-300);
+  --color-orange-400: var(--orange-400);
+  --color-orange-500: var(--orange-500);
+  --color-orange-600: var(--orange-600);
+  --color-orange-700: var(--orange-700);
+  --color-orange-800: var(--orange-800);
+  --color-orange-900: var(--orange-900);
+  --color-orange-950: var(--orange-950);
+
+  /* Typography */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-code: var(--font-code);
+
+  /* Font sizes */
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-3xl: var(--text-3xl);
+  --font-size-4xl: var(--text-4xl);
+
+  /* Spacing */
+  --space-1: var(--space-1);
+  --space-2: var(--space-2);
+  --space-3: var(--space-3);
+  --space-4: var(--space-4);
+  --space-5: var(--space-5);
+  --space-6: var(--space-6);
+  --space-8: var(--space-8);
+  --space-10: var(--space-10);
+  --space-12: var(--space-12);
+  --space-16: var(--space-16);
+  --space-20: var(--space-20);
+  --space-24: var(--space-24);
+
+  /* Border radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+
+  /* Responsive container */
+  --container-sm: var(--container-sm);
+  --container-md: var(--container-md);
+  --container-lg: var(--container-lg);
+  --container-xl: var(--container-xl);
+}
+
+/* ===================================
+   🎨 TAILWIND v4 COMPATIBILITY
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - The @theme rule above is for Tailwind CSS v4 configuration
+   - This rule may show "Unknown at rule" warnings in some editors
+   - This is EXPECTED BEHAVIOR and does not affect functionality
+   - DO NOT remove or modify the @theme block
+   - The @theme block enables proper Tailwind v4 theming with hex values
+   ===================================*/
+
+/* ===================================
+   🛠️ UTILITY CLASSES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Custom utility classes that extend Tailwind
+   - DO NOT modify existing utilities unless fixing bugs
+   - DO add new utilities in the appropriate section
+   - Keep utilities simple and reusable
+   ===================================*/
+
+/* Smooth scrolling - DO NOT REMOVE unless changing scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility - DO NOT MODIFY unless accessibility requirements change */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+/* Reduced motion support - DO NOT REMOVE unless changing accessibility standards */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===================================
+   📱 OVERSCROLL BACKGROUND FIXES
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - Prevents white background on overscroll in both light and dark modes
+   - Ensures background color matches theme in all scroll scenarios
+   - DO NOT remove these fixes - essential for consistent visual experience
+   ===================================*/
+
+/* Fix overscroll background for both light and dark modes */
+html {
+  background-color: var(--color-background);
+  overscroll-behavior: none;
+}
+
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent overscroll showing white background */
+* {
+  overscroll-behavior: none;
+}
+
+/* Ensure all elements respect the background */
+#__next {
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+/* Fix mobile overscroll rubber banding */
+html, body {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+}
+
+/* Additional mobile overscroll fixes */
+@media (max-width: 768px) {
+  html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-background);
+  }
+
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--color-background);
+  }
+}
+
+/* ===================================
+   🌙 DARK MODE SELECTORS
+   ===================================
+   🚨 CRITICAL: Explicit .dark class selectors for dark mode
+   These override the semantic tokens when .dark class is applied to html
+   ===================================*/
+
+.dark {
+  /* Dark mode background colors */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+
+  /* Dark mode brand colors */
+  --primary: #a855f7;
+  --primary-foreground: #000000;
+  --secondary: #222222;
+  --secondary-foreground: #ffffff;
+  --muted: #333333;
+  --muted-foreground: #999999;
+  --accent: #444444;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Dark mode borders and inputs */
+  --border: #333333;
+  --input: #222222;
+  --ring: #a855f7;
+
+  /* Dark mode status colors */
+  --success: #4ade80;
+  --success-foreground: #000000;
+  --warning: #fb923c;
+  --warning-foreground: #000000;
+  --info: #60a5fa;
+  --info-foreground: #000000;
+}

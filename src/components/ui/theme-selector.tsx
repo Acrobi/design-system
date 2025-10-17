@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Button } from "./button"
 import { useTheme } from "./theme-provider"
+import { cn } from "../../lib/utils"
 
 // ===================================
 // 🎨 THEME SELECTOR CONFIGURATION
@@ -116,12 +117,10 @@ export function ThemeSelector() {
         >
           {/* 🚨 DO NOT modify this preview display */}
           <div
-            className={colorThemes.find(t => t.name === theme)?.preview || ""}
-            style={{
-              width: "12px",
-              height: "12px",
-              borderRadius: "2px"
-            }}
+            className={cn(
+              colorThemes.find(t => t.name === theme)?.preview || "",
+              "w-3 h-3 rounded-sm"
+            )}
           />
         </Button>
       </div>

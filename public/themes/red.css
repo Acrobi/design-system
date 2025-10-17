@@ -11,19 +11,19 @@
 /* Apply red theme variables to root element */
 :root {
   /* Primary color scheme - Bold red */
-  --primary: 346.8 77.2% 49.8%;
-  --primary-foreground: 355.7 100% 97.3%;
+  --primary: #dc2626;
+  --primary-foreground: #fef2f2;
 
   /* Supporting colors that work with red primary */
-  --secondary: 0 20% 95%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --accent: 0 20% 95%;
-  --accent-foreground: 222.2 84% 4.9%;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --accent: #f2f2f2;
+  --accent-foreground: #171717;
 
   /* Destructive and other functional colors */
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
 
   /* Interactive elements */
-  --ring: 346.8 77.2% 49.8%;
+  --ring: #dc2626;
 }

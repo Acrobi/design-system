@@ -1,115 +1,267 @@
 /** @type {import('tailwindcss').Config} */
 // ===================================
-// ⚙️ TAILWIND CSS CONFIGURATION
+// ⚙️ TAILWIND CSS CONFIGURATION - v4 SEMANTIC TOKENS
 // ===================================
 // 🚨 AI AGENT GUIDANCE:
-// - This config bridges CSS custom properties to Tailwind utilities
-// - DO NOT modify the color format - must be HSL with CSS variables
-// - DO NOT add hard-coded colors - use semantic tokens from globals.css
-// - DO NOT change the darkMode configuration - .class is required
-// - ALWAYS reference semantic tokens (--primary, --background, etc.)
+// - This config uses Tailwind CSS v4 with @theme block in CSS
+// - NO hard-coded values in this config - ALL values use semantic tokens
+// - The @theme block in tailwind.css handles ALL configuration
+// - DO NOT add any hard-coded colors, spacing, or typography values
+// - ALWAYS reference semantic CSS variables
 // ===================================
 
 module.exports = {
-  // 🚨 DO NOT modify this darkMode configuration - .class is required for our system
-  darkMode: ["class"],
+  // 🚨 CRITICAL: Enable class-based dark mode for JavaScript toggle functionality
+  darkMode: ['class'],
 
   // 🚨 DO NOT modify this content pattern unless adding new file types
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["./src/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
 
+  // ===================================
+  // 🎨 SEMANTIC TOKEN MAPPINGS
+  // ===================================
+  // 🚨 CRITICAL: NO hard-coded values allowed
+  // All values reference CSS variables defined in @theme block
+  // ===================================
   theme: {
-    // Container configuration - 🚨 DO NOT modify without understanding container system
+    // Container configuration - uses semantic spacing tokens
     container: {
       center: true,
-      padding: "2rem",
+      padding: "var(--space-6)",
       screens: {
-        "2xl": "1400px"
+        "2xl": "var(--container-2xl)"
       }
     },
 
     extend: {
       // ===================================
-      // 🎨 COLOR SYSTEM - SEMANTIC TOKENS
+      // 🎨 COLOR SYSTEM - SEMANTIC TOKENS ONLY
       // ===================================
-      // 🚨 AI AGENT GUIDANCE:
-      // - These map CSS custom properties to Tailwind utilities
-      // - DO NOT change the hsl() format - it's required for CSS variables
-      // - DO NOT use hard-coded colors - always reference CSS variables
-      // - DO NOT modify the variable names - they must match globals.css
-      // - Add new colors only if adding new semantic tokens to globals.css
+      // 🚨 CRITICAL: NO hard-coded colors
+      // All colors reference semantic tokens from @theme block
       // ===================================
       colors: {
-        // Semantic color tokens - map to globals.css definitions
-        border: "hsl(var(--border) / <alpha-value>)",
-        input: "hsl(var(--input) / <alpha-value>)",
-        ring: "hsl(var(--ring) / <alpha-value>)",
-        background: "hsl(var(--background) / <alpha-value>)",
-        foreground: "hsl(var(--foreground) / <alpha-value>)",
+        // Semantic color tokens - reference @theme definitions
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
 
-        // Primary colors with foreground variants
+        // Primary semantic colors
         primary: {
-          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
-          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
 
-        // Secondary colors with foreground variants
+        // Secondary semantic colors
         secondary: {
-          DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
-          foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
 
-        // Destructive colors for errors/danger
+        // Destructive semantic colors
         destructive: {
-          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
-          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
         },
 
-        // Muted colors for subtle UI elements
+        // Muted semantic colors
         muted: {
-          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
-          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
 
-        // Accent colors for highlights
+        // Accent semantic colors
         accent: {
-          DEFAULT: "hsl(var(--accent) / <alpha-value>)",
-          foreground: "hsl(var(--accent-foreground) / <alpha-value>)",
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
 
-        // Card colors for containers
+        // Card semantic colors
         card: {
-          DEFAULT: "hsl(var(--card) / <alpha-value>)",
-          foreground: "hsl(var(--card-foreground) / <alpha-value>)",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
         },
 
-        // Popover colors for dropdowns/overlays
+        // Popover semantic colors
         popover: {
-          DEFAULT: "hsl(var(--popover) / <alpha-value>)",
-          foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
         },
+
+        // System status colors - semantic only
+        success: {
+          DEFAULT: "var(--success)",
+          foreground: "var(--success-foreground)",
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          foreground: "var(--warning-foreground)",
+        },
+        info: {
+          DEFAULT: "var(--info)",
+          foreground: "var(--info-foreground)",
+        },
+
+        // Content colors - semantic hierarchy
+        "content-primary": "var(--content-primary)",
+        "content-secondary": "var(--content-secondary)",
+        "content-tertiary": "var(--content-tertiary)",
+        "content-disabled": "var(--content-disabled)",
       },
 
       // ===================================
-      // 🔲 BORDER RADIUS SYSTEM
+      // 🔲 BORDER RADIUS - SEMANTIC TOKENS
       // ===================================
-      // 🚨 AI AGENT GUIDANCE:
-      // - This provides consistent border radius values
-      // - DO NOT modify unless updating the entire radius system
-      // - These values reference the semantic radius tokens from globals.css
+      // 🚨 CRITICAL: NO hard-coded values
+      // All radius values reference semantic tokens
       // ===================================
       borderRadius: {
-        lg: "var(--radius)",                    // Large radius (default)
-        md: "calc(var(--radius) - 2px)",       // Medium radius
-        sm: "calc(var(--radius) - 4px)",       // Small radius
+        none: "var(--radius-none)",
+        xs: "var(--radius-xs)",
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius-default)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-2xl)",
+        "3xl": "var(--radius-3xl)",
+        full: "var(--radius-full)",
       },
 
       // ===================================
-      // 🎬 ANIMATION KEYFRAMES
+      // 📏 SPACING SYSTEM - SEMANTIC TOKENS
       // ===================================
-      // 🚨 AI AGENT GUIDANCE:
-      // - These define reusable animation sequences
-      // - DO NOT modify unless adding new animation patterns
-      // - Follow the naming convention (animate-name)
+      // 🚨 CRITICAL: NO hard-coded values
+      // All spacing values reference semantic tokens
+      // ===================================
+      spacing: {
+        '0': 'var(--space-0)',
+        'px': 'var(--space-px)',
+        '0.5': 'var(--space-0-5)',
+        '1': 'var(--space-1)',
+        '1.5': 'var(--space-1-5)',
+        '2': 'var(--space-2)',
+        '2.5': 'var(--space-2-5)',
+        '3': 'var(--space-3)',
+        '3.5': 'var(--space-3-5)',
+        '4': 'var(--space-4)',
+        '5': 'var(--space-5)',
+        '6': 'var(--space-6)',
+        '7': 'var(--space-7)',
+        '8': 'var(--space-8)',
+        '9': 'var(--space-9)',
+        '10': 'var(--space-10)',
+        '11': 'var(--space-11)',
+        '12': 'var(--space-12)',
+        '14': 'var(--space-14)',
+        '16': 'var(--space-16)',
+        '20': 'var(--space-20)',
+        '24': 'var(--space-24)',
+        '28': 'var(--space-28)',
+        '32': 'var(--space-32)',
+        '36': 'var(--space-36)',
+        '40': 'var(--space-40)',
+        '44': 'var(--space-44)',
+        '48': 'var(--space-48)',
+        '52': 'var(--space-52)',
+        '56': 'var(--space-56)',
+        '60': 'var(--space-60)',
+        '64': 'var(--space-64)',
+        '72': 'var(--space-72)',
+        '80': 'var(--space-80)',
+        '96': 'var(--space-96)',
+      },
+
+      // ===================================
+      // 📝 TYPOGRAPHY SYSTEM - SEMANTIC TOKENS
+      // ===================================
+      // 🚨 CRITICAL: NO hard-coded values
+      // All typography values reference semantic tokens
+      // ===================================
+      fontFamily: {
+        sans: ['var(--font-sans)'],
+        serif: ['var(--font-serif)'],
+        mono: ['var(--font-mono)'],
+        display: ['var(--font-display)'],
+        body: ['var(--font-body)'],
+        heading: ['var(--font-heading)'],
+      },
+
+      fontSize: {
+        // Text scale - semantic fluid typography
+        'xs': ['var(--text-xs)', { lineHeight: 'var(--leading-xs)' }],
+        'sm': ['var(--text-sm)', { lineHeight: 'var(--leading-sm)' }],
+        'base': ['var(--text-base)', { lineHeight: 'var(--leading-base)' }],
+        'lg': ['var(--text-lg)', { lineHeight: 'var(--leading-lg)' }],
+        'xl': ['var(--text-xl)', { lineHeight: 'var(--leading-xl)' }],
+        '2xl': ['var(--text-2xl)', { lineHeight: 'var(--leading-2xl)' }],
+        '3xl': ['var(--text-3xl)', { lineHeight: 'var(--leading-3xl)' }],
+        '4xl': ['var(--text-4xl)', { lineHeight: 'var(--leading-4xl)' }],
+        '5xl': ['var(--text-5xl)', { lineHeight: 'var(--leading-5xl)' }],
+        '6xl': ['var(--text-6xl)', { lineHeight: 'var(--leading-6xl)' }],
+
+        // Display scale - semantic headings
+        'display-xs': ['var(--text-display-xs)', { lineHeight: 'var(--leading-display-xs)' }],
+        'display-sm': ['var(--text-display-sm)', { lineHeight: 'var(--leading-display-sm)' }],
+        'display-md': ['var(--text-display-md)', { lineHeight: 'var(--leading-display-md)' }],
+        'display-lg': ['var(--text-display-lg)', { lineHeight: 'var(--leading-display-lg)' }],
+        'display-xl': ['var(--text-display-xl)', { lineHeight: 'var(--leading-display-xl)' }],
+        'display-2xl': ['var(--text-display-2xl)', { lineHeight: 'var(--leading-display-2xl)' }],
+      },
+
+      fontWeight: {
+        thin: 'var(--font-weight-thin)',
+        extralight: 'var(--font-weight-extralight)',
+        light: 'var(--font-weight-light)',
+        normal: 'var(--font-weight-normal)',
+        medium: 'var(--font-weight-medium)',
+        semibold: 'var(--font-weight-semibold)',
+        bold: 'var(--font-weight-bold)',
+        extrabold: 'var(--font-weight-extrabold)',
+        black: 'var(--font-weight-black)',
+      },
+
+      letterSpacing: {
+        tighter: 'var(--letter-spacing-tighter)',
+        tight: 'var(--letter-spacing-tight)',
+        normal: 'var(--letter-spacing-normal)',
+        wide: 'var(--letter-spacing-wide)',
+        wider: 'var(--letter-spacing-wider)',
+        widest: 'var(--letter-spacing-widest)',
+      },
+
+      // ===================================
+      // 🌟 SHADOW SYSTEM - SEMANTIC TOKENS
+      // ===================================
+      // 🚨 CRITICAL: NO hard-coded values
+      // All shadows reference semantic tokens
+      // ===================================
+      boxShadow: {
+        none: 'var(--shadow-none)',
+        xs: 'var(--shadow-xs)',
+        sm: 'var(--shadow-sm)',
+        DEFAULT: 'var(--shadow-default)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+        xl: 'var(--shadow-xl)',
+        '2xl': 'var(--shadow-2xl)',
+        '3xl': 'var(--shadow-3xl)',
+        inner: 'var(--shadow-inner)',
+
+        // Semantic shadows for specific contexts
+        'interactive': 'var(--shadow-interactive)',
+        'elevated': 'var(--shadow-elevated)',
+        'card': 'var(--shadow-card)',
+        'modal': 'var(--shadow-modal)',
+      },
+
+      // ===================================
+      // 🎬 ANIMATION KEYFRAMES - SEMANTIC
+      // ===================================
+      // 🚨 CRITICAL: NO hard-coded values
+      // All animations reference semantic timing functions
       // ===================================
       keyframes: {
         "accordion-down": {
@@ -144,25 +296,83 @@ module.exports = {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "scale-in": {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "scale-out": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(0.95)", opacity: "0" },
+        },
       },
 
       // ===================================
-      // ⚡ ANIMATION UTILITIES
+      // ⚡ ANIMATION UTILITIES - SEMANTIC
       // ===================================
-      // 🚨 AI AGENT GUIDANCE:
-      // - These map keyframes to utility classes
-      // - DO NOT modify unless updating animation system
-      // - Use consistent duration and easing patterns
+      // 🚨 CRITICAL: NO hard-coded values
+      // All durations and easing reference semantic tokens
       // ===================================
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.2s ease-out",
-        "fade-out": "fade-out 0.2s ease-out",
-        "slide-in-from-top": "slide-in-from-top 0.3s ease-out",
-        "slide-in-from-bottom": "slide-in-from-bottom 0.3s ease-out",
-        "slide-in-from-left": "slide-in-from-left 0.3s ease-out",
-        "slide-in-from-right": "slide-in-from-right 0.3s ease-out",
+        "accordion-down": "accordion-down var(--duration-fast) var(--easing-default)",
+        "accordion-up": "accordion-up var(--duration-fast) var(--easing-default)",
+        "fade-in": "fade-in var(--duration-base) var(--easing-default)",
+        "fade-out": "fade-out var(--duration-base) var(--easing-default)",
+        "slide-in-from-top": "slide-in-from-top var(--duration-base) var(--easing-out)",
+        "slide-in-from-bottom": "slide-in-from-bottom var(--duration-base) var(--easing-out)",
+        "slide-in-from-left": "slide-in-from-left var(--duration-base) var(--easing-out)",
+        "slide-in-from-right": "slide-in-from-right var(--duration-base) var(--easing-out)",
+        "scale-in": "scale-in var(--duration-fast) var(--easing-out)",
+        "scale-out": "scale-out var(--duration-fast) var(--easing-in)",
+
+        // Semantic animation durations
+        "spin-slow": "spin var(--duration-slow) linear infinite",
+        "spin-fast": "spin var(--duration-fast) linear infinite",
+        "pulse-slow": "pulse var(--duration-slow) var(--easing-in-out) infinite",
+        "pulse-fast": "pulse var(--duration-fast) var(--easing-in-out) infinite",
+      },
+
+      // ===================================
+      // 📐 OTHER SEMANTIC TOKENS
+      // ===================================
+      // 🚨 CRITICAL: NO hard-coded values
+      // All values reference semantic tokens
+      // ===================================
+      zIndex: {
+        hide: 'var(--z-hide)',
+        auto: 'var(--z-auto)',
+        base: 'var(--z-base)',
+        docked: 'var(--z-docked)',
+        dropdown: 'var(--z-dropdown)',
+        sticky: 'var(--z-sticky)',
+        banner: 'var(--z-banner)',
+        overlay: 'var(--z-overlay)',
+        modal: 'var(--z-modal)',
+        popover: 'var(--z-popover)',
+        skipLink: 'var(--z-skip-link)',
+        toast: 'var(--z-toast)',
+        tooltip: 'var(--z-tooltip)',
+      },
+
+      maxWidth: {
+        none: 'var(--max-width-none)',
+        xs: 'var(--max-width-xs)',
+        sm: 'var(--max-width-sm)',
+        md: 'var(--max-width-md)',
+        lg: 'var(--max-width-lg)',
+        xl: 'var(--max-width-xl)',
+        '2xl': 'var(--max-width-2xl)',
+        '3xl': 'var(--max-width-3xl)',
+        '4xl': 'var(--max-width-4xl)',
+        '5xl': 'var(--max-width-5xl)',
+        '6xl': 'var(--max-width-6xl)',
+        '7xl': 'var(--max-width-7xl)',
+        full: 'var(--max-width-full)',
+        'prose': 'var(--max-width-prose)',
+        'screen-sm': 'var(--max-width-screen-sm)',
+        'screen-md': 'var(--max-width-screen-md)',
+        'screen-lg': 'var(--max-width-screen-lg)',
+        'screen-xl': 'var(--max-width-screen-xl)',
+        'screen-2xl': 'var(--max-width-screen-2xl)',
       },
     },
   },
@@ -172,38 +382,46 @@ module.exports = {
   // ===================================
   // 🚨 AI AGENT GUIDANCE:
   // - Plugins extend Tailwind functionality
-  // - DO NOT remove tailwindcss-animate - it's essential for Radix UI
+  // - DO NOT remove tailwindcss-animate - essential for Radix UI
   // - Add new plugins only if they integrate with the design system
   // ===================================
   plugins: [require("tailwindcss-animate")],
 }
 
 // ===================================
-// 📚 CONFIGURATION ARCHITECTURE NOTES
+// 📚 CONFIGURATION ARCHITECTURE NOTES - TAILWIND v4 SEMANTIC
 // ===================================
 // 🚨 AI AGENT GUIDANCE:
 //
-// COLOR SYSTEM ARCHITECTURE:
-// 1. globals.css defines semantic tokens (--primary, --background, etc.)
-// 2. This config maps tokens to Tailwind utilities (bg-primary, text-background)
-// 3. Components use Tailwind utilities (never hard-coded colors)
+// GOLDEN RULE: NO hard-coded values in this configuration
+//
+// SEMANTIC TOKEN ARCHITECTURE:
+// 1. tailwind.css @theme block defines ALL primitive tokens
+// 2. tailwind.css :root defines semantic color mappings
+// 3. This config references semantic tokens via CSS variables
+// 4. Components use Tailwind utilities (never hard-coded values)
 //
 // TOKEN HIERARCHY:
-// - Primitive tokens (--p50, --n100) → Semantic tokens (--primary) → Utilities (bg-primary)
+// - Primitive tokens (@theme) → Semantic tokens (:root) → Utilities → Components
 // - DO NOT skip this hierarchy - it breaks the theming system
 //
 // MODIFICATION GUIDELINES:
-// ✅ ADD: New semantic tokens (follow existing pattern)
-// ✅ ADD: New animations (use keyframes + animation utilities)
-// ✅ UPDATE: Border radius system (update tokens + config)
+// ✅ ADD: New semantic token references (follow existing pattern)
+// ✅ ADD: New animations (use semantic durations and easing)
+// ✅ UPDATE: Token mappings (update tokens + config)
 //
-// ❌ DO NOT: Add hard-coded colors
-// ❌ DO NOT: Change HSL format
-// ❌ DO NOT: Remove color variable references
+// ❌ DO NOT: Add hard-coded values
+// ❌ DO NOT: Use numbers directly (e.g., padding: '1rem')
+// ❌ DO NOT: Remove variable references
 // ❌ DO NOT: Modify darkMode configuration
 //
 // CLIENT THEMING:
-// - Client themes override semantic tokens in globals.css
+// - Client themes override semantic tokens in tailwind.css
 // - This config automatically picks up those changes
 // - No config modifications needed for client theming
+//
+// TAILWIND v4 COMPATIBILITY:
+// - @theme block in tailwind.css handles primitive configuration
+// - This config references semantic tokens with var(--*) syntax
+// - All values must reference CSS variables, no hard-coded values
 // ===================================

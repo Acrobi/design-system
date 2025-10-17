@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Test Runner</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background, #ffffff);
+            color: var(--foreground, #000000);
+        }
+        .test-results {
+            background: var(--card, #f5f5f5);
+            border: 1px solid var(--border, #e5e5e5);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #dcfce7; color: #166534; }
+        .error { background: #fef2f2; color: #dc2626; }
+        .info { background: #eff6ff; color: #2563eb; }
+        pre {
+            background: var(--muted, #f5f5f5);
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .manual-test {
+            background: var(--accent, #f3f4f6);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background: var(--primary, #000000);
+            color: var(--primary-foreground, #ffffff);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Dark Mode Comprehensive Test Runner</h1>
+
+    <div class="test-results">
+        <h2>Automated Test Results</h2>
+        <div id="test-output">Loading tests...</div>
+        <div id="test-status"></div>
+    </div>
+
+    <div class="manual-test">
+        <h2>🎯 Manual Testing Instructions</h2>
+        <ol>
+            <li><strong>Open the main test page:</strong> <a href="/dark-mode-test" target="_blank">Dark Mode Test Page</a></li>
+            <li><strong>Test the toggle button:</strong> Click "Toggle Dark Mode" multiple times</li>
+            <li><strong>Check for visual changes:</strong> Background should change dramatically</li>
+            <li><strong>Verify HTML class:</strong> Check if .dark class is applied to html element</li>
+            <li><strong>Test system preference:</strong> Change OS dark mode setting and reload</li>
+            <li><strong>Check browser console:</strong> Look for CSS errors or warnings</li>
+            <li><strong>Verify colors:</strong>
+                <ul>
+                    <li>Light mode: White background, dark text</li>
+                    <li>Dark mode: Dark background, light text</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div>
+            <button onclick="window.open('/dark-mode-test', '_blank')">🚀 Open Test Page</button>
+            <button onclick="runTests()">🔄 Run Tests Again</button>
+            <button onclick="toggleManualTheme()">🌙 Manual Theme Toggle</button>
+        </div>
+    </div>
+
+    <div class="test-results">
+        <h2>Expected Behavior</h2>
+        <ul>
+            <li>✅ Page loads without CSS errors</li>
+            <li>✅ All CSS variables are properly defined</li>
+            <li>✅ Toggle button adds/removes .dark class from html element</li>
+            <li>✅ Background color changes from white to dark slate (#0f172a)</li>
+            <li>✅ Text color changes from dark to light (#f8fafc)</li>
+            <li>✅ All UI components update colors correctly</li>
+            <li>✅ System preference detection works</li>
+            <li>✅ No circular references in CSS variables</li>
+        </ul>
+    </div>
+
+    <script src="/test-dark-mode-comprehensive.js"></script>
+    <script>
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(runTests, 1000); // Wait for CSS to load
+        });
+
+        function runTests() {
+            const output = document.getElementById('test-output');
+            const status = document.getElementById('test-status');
+
+            output.innerHTML = '<div class="status info">Running comprehensive dark mode tests...</div>';
+
+            try {
+                const results = runComprehensiveTests();
+
+                output.innerHTML = `
+                    <pre>${consoleLogs.join('\n')}</pre>
+                `;
+
+                if (results.allPassed) {
+                    status.innerHTML = '<div class="status success">✅ ALL TESTS PASSED! Dark mode is working correctly.</div>';
+                } else {
+                    status.innerHTML = '<div class="status error">❌ SOME TESTS FAILED! Check the results above.</div>';
+                }
+            } catch (error) {
+                output.innerHTML = `<div class="status error">Test failed with error: ${error.message}</div>`;
+                status.innerHTML = '<div class="status error">❌ TEST EXECUTION FAILED</div>';
+            }
+        }
+
+        function toggleManualTheme() {
+            document.documentElement.classList.toggle('dark');
+            const hasDark = document.documentElement.classList.contains('dark');
+            const message = hasDark ? 'Dark mode applied' : 'Light mode applied';
+            document.getElementById('test-status').innerHTML = `<div class="status info">${message}</div>`;
+        }
+
+        // Capture console logs
+        const consoleLogs = [];
+        const originalLog = console.log;
+        console.log = function(...args) {
+            consoleLogs.push(args.join(' '));
+            originalLog.apply(console, args);
+        };
+    </script>
+</body>
+</html>

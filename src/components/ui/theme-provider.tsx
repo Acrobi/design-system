@@ -97,7 +97,7 @@ export function ThemeProvider({
 
     // Update meta theme-color for mobile browsers
     // 🚨 DO NOT remove this - it's essential for mobile app experience
-    const themeColor = resolved === "dark" ? "hsl(var(--background))" : "hsl(var(--background))"
+    const themeColor = resolved === "dark" ? "var(--background)" : "var(--background)"
     const metaThemeColor = document.querySelector('meta[name="theme-color"]')
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', themeColor)
@@ -251,13 +251,18 @@ export function ThemeProvider({
 
   const toggleMode = React.useCallback(() => {
     // 🚨 DO NOT modify this cycling behavior
-    if (mode === "light") {
-      setMode("dark")
-    } else if (mode === "dark") {
-      setMode(enableSystem ? "system" : "light")
+    const currentMode = mode
+    let newMode: Mode
+
+    if (currentMode === "light") {
+      newMode = "dark"
+    } else if (currentMode === "dark") {
+      newMode = enableSystem ? "system" : "light"
     } else {
-      setMode("light")
+      newMode = "light"
     }
+
+    setMode(newMode)
   }, [mode, enableSystem, setMode])
 
   const setTheme = React.useCallback((newTheme: ColorTheme) => {

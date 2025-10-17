@@ -11,19 +11,19 @@
 /* Apply purple theme variables to root element */
 :root {
   /* Primary color scheme - Creative purple */
-  --primary: 262.1 83.3% 57.8%;
-  --primary-foreground: 210 40% 98%;
+  --primary: #9333ea;
+  --primary-foreground: #fafafa;
 
   /* Supporting colors that work with purple primary */
-  --secondary: 270 20% 95%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --accent: 270 20% 95%;
-  --accent-foreground: 222.2 84% 4.9%;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --accent: #f2f2f2;
+  --accent-foreground: #171717;
 
   /* Destructive and other functional colors */
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
 
   /* Interactive elements */
-  --ring: 262.1 83.3% 57.8%;
+  --ring: #9333ea;
 }
