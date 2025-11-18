@@ -1,0 +1,29 @@
+/* ===================================
+   🎨 RED THEME - Bold Red Primary
+   ===================================
+   🚨 AI AGENT GUIDANCE:
+   - This theme provides a bold red color scheme
+   - DO NOT modify the CSS class selector pattern
+   - DO NOT change the variable names - must match globals.css semantic tokens
+   - These values override the base semantic tokens
+   ===================================*/
+
+/* Apply red theme variables to root element */
+:root {
+  /* Primary color scheme - Bold red */
+  --primary: #dc2626;
+  --primary-foreground: #fef2f2;
+
+  /* Supporting colors that work with red primary */
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --accent: #f2f2f2;
+  --accent-foreground: #171717;
+
+  /* Destructive and other functional colors */
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+
+  /* Interactive elements */
+  --ring: #dc2626;
+}

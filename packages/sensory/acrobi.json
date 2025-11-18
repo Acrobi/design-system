@@ -1,0 +1,52 @@
+{
+  "id": "acrobi.design-sensory",
+  "name": "Design System Sensory Feedback",
+  "version": "1.0.0",
+  "description": "Sensory feedback system with haptics and sound effects for UI interactions",
+  "author": {
+    "name": "Brian Porter",
+    "email": "brian@acrobi.com",
+    "url": "https://acrobi.com"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "category": "ui-component",
+  "keywords": ["sensory", "feedback", "haptics", "accessibility", "ux"],
+  "main": "./dist/extension.js",
+  "types": "./dist/extension.d.ts",
+  "homepage": "https://github.com/Acrobi/design-system",
+  "repository": "https://github.com/Acrobi/design-system",
+  "bugs": "https://github.com/Acrobi/design-system/issues",
+  "dependencies": [],
+  "coreVersion": ">=0.1.0",
+  "capabilities": [
+    {
+      "id": "sensory.feedback",
+      "name": "Sensory Feedback Provider",
+      "description": "Provides haptic and audio feedback for UI interactions",
+      "version": "1.0.0"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable sensory feedback"
+      },
+      "hapticsEnabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable haptic feedback"
+      },
+      "soundsEnabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable sound effects"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "@acrobi/design-tokens",
+  "version": "1.0.0",
+  "description": "Foundation design tokens for the Acrobi Design System - Tier 1 & 2 of three-tier architecture",
+  "author": "Brian Porter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acrobi/design-system",
+    "directory": "packages/tokens"
+  },
+  "keywords": [
+    "acrobi",
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "oklch",
+    "theming",
+    "tokens"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./primitives.css": "./src/primitives.css",
+    "./themes/default.css": "./src/themes/default.css",
+    "./themes/base.css": "./src/themes/base.css",
+    "./themes/blue.css": "./src/themes/blue.css",
+    "./themes/purple.css": "./src/themes/purple.css",
+    "./themes/green.css": "./src/themes/green.css",
+    "./themes/red.css": "./src/themes/red.css",
+    "./themes/orange.css": "./src/themes/orange.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src/*.css",
+    "src/themes/*.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.9.2"
+  }
+}

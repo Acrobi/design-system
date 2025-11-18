@@ -1,0 +1,61 @@
+{
+  "name": "@acrobi/design-sensory",
+  "version": "1.0.0",
+  "description": "Sensory feedback system for the Acrobi Design System - Acrobi Extension",
+  "author": "Brian Porter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acrobi/design-system",
+    "directory": "packages/sensory"
+  },
+  "keywords": [
+    "acrobi",
+    "design-system",
+    "sensory",
+    "feedback",
+    "haptics",
+    "accessibility",
+    "extension"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./extension": {
+      "import": "./dist/extension.esm.js",
+      "require": "./dist/extension.js",
+      "types": "./dist/extension.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "acrobi.json",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^19.1.2",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.9.2"
+  }
+}

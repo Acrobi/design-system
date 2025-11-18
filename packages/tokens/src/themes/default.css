@@ -1,0 +1,135 @@
+/* ===================================
+   🎯 TIER 2: SEMANTIC DESIGN TOKENS
+   ===================================
+   🚨 CRITICAL RULES:
+   - These are ALIASES that give primitives purpose
+   - COMPONENTS MUST USE THESE TOKENS - never primitives directly
+   - DO NOT reference primitive tokens (--blue-600, etc.) in components
+   - DO modify these values to change the visual design
+   - DO add new semantic tokens as needed for new design patterns
+   - This is the ONLY file that should contain a .dark selector
+   ===================================*/
+
+/*
+  This is the Theme Layer. It defines the "Default ShadCN" theme.
+  CRITICAL: Every value MUST be a `var()` reference to a variable in `primitives.css`.
+  No raw color values are allowed in this file.
+*/
+
+/* ------------------------------------------- */
+/* DEFAULT LIGHT MODE MAPPINGS                 */
+/* ------------------------------------------- */
+:root {
+  /* MAPPING CORE COLORS */
+  --background:           var(--gray-0);     /* Original: oklch(1.0000 0 0) */
+  --foreground:           var(--gray-950);   /* Original: oklch(0.2079 ...) */
+  --card:                 var(--gray-0);
+  --card-foreground:      var(--gray-950);
+  --popover:              var(--gray-0);
+  --popover-foreground:   var(--gray-950);
+
+  --primary:              var(--gray-950);   /* A very dark gray */
+  --primary-foreground:   var(--gray-50);    /* A very light gray */
+  --secondary:            var(--gray-100);   /* Original: oklch(0.9684 ...) */
+  --secondary-foreground: var(--gray-900);
+  --muted:                var(--gray-100);
+  --muted-foreground:     var(--gray-500);   /* Original: oklch(0.5547 ...) */
+  --accent:               var(--gray-100);
+  --accent-foreground:    var(--gray-900);
+
+  --destructive:          var(--red-600);    /* Original: oklch(0.6368 ...) */
+  --destructive-foreground: var(--gray-50);
+
+  --border:               var(--gray-200);   /* Original: oklch(0.9290 ...) */
+  --input:                var(--gray-200);
+  --ring:                 var(--blue-800);   /* Original: oklch(0.2079 ...) - Mapped to a slightly lighter blue for focus */
+
+  /* System status colors - light mode */
+  --success:              var(--green-600);   /* Light success */
+  --success-foreground:   var(--gray-50);
+  --warning:              var(--yellow-600);  /* Light warning */
+  --warning-foreground:   var(--gray-50);
+  --info:                 var(--blue-600);    /* Light info */
+  --info-foreground:      var(--gray-50);
+
+  /* MAPPING OTHER PRIMITIVES */
+  --radius: var(--radius-md); /* Original: 0.5rem */
+}
+
+/* ------------------------------------------- */
+/* DARK MODE MAPPINGS                          */
+/* ------------------------------------------- */
+.dark {
+  /* MAPPING CORE COLORS */
+  --background:           var(--gray-950);   /* Original: oklch(0.2079 ...) */
+  --foreground:           var(--gray-50);    /* Original: oklch(0.9838 ...) */
+  --card:                 var(--gray-900);   /* A slightly lighter dark for cards */
+  --card-foreground:      var(--gray-50);
+  --popover:              var(--gray-900);
+  --popover-foreground:   var(--gray-50);
+
+  --primary:              var(--gray-50);   /* A vibrant blue for dark mode */
+  --primary-foreground:   var(--gray-950);   /* Dark text on a vibrant button */
+  --secondary:            var(--gray-800);
+  --secondary-foreground: var(--gray-50);
+  --muted:                var(--gray-800);
+  --muted-foreground:     var(--gray-400);
+
+  --accent:               var(--gray-800);
+  --accent-foreground:    var(--gray-50);
+
+  --destructive:          var(--red-500);    /* A more vibrant red for dark mode */
+  --destructive-foreground: var(--gray-50);
+
+  --border:               var(--gray-800);
+  --input:                var(--gray-800);
+  --ring:                 var(--blue-500);   /* Keep the vibrant blue for focus rings */
+
+  /* System status colors - dark mode */
+  --success:              var(--green-500);   /* Dark mode success - brighter */
+  --success-foreground:   var(--gray-950);
+  --warning:              var(--yellow-500);  /* Dark mode warning - brighter */
+  --warning-foreground:   var(--gray-950);
+  --info:                 var(--blue-500);    /* Dark mode info - brighter */
+  --info-foreground:      var(--gray-950);
+}
+
+/* ------------------------------------------- */
+/* TAILWIND CSS v4 INTEGRATION                 */
+/* ------------------------------------------- */
+/*
+  This @theme directive is the modern way to bridge our CSS variables with Tailwind's theme system.
+  It tells Tailwind that a class like `bg-primary` should use our `--primary` variable.
+  This part of the file remains the same, as it's the final link in the chain.
+*/
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --radius-lg: var(--radius);
+  /* Map other variables as needed */
+}

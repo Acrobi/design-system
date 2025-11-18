@@ -1,0 +1,14 @@
+{
+  "extends": "../../shared/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../tokens" },
+    { "path": "../primitives" },
+    { "path": "../icons" }
+  ]
+}
