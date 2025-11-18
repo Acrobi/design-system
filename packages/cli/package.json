@@ -1,0 +1,60 @@
+{
+  "name": "@acrobi/design-cli",
+  "version": "1.0.0",
+  "description": "Command-line tools for the Acrobi Design System",
+  "author": "Brian Porter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acrobi/design-system",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "acrobi",
+    "design-system",
+    "cli",
+    "tools",
+    "theme"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "acrobi-design": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@acrobi/design-tokens": "workspace:^",
+    "@acrobi/design-themes": "workspace:^"
+  },
+  "dependencies": {
+    "commander": "^13.0.0",
+    "chalk": "^5.4.1",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.9.2"
+  }
+}

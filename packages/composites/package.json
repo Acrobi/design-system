@@ -1,0 +1,67 @@
+{
+  "name": "@acrobi/design-composites",
+  "version": "1.0.0",
+  "description": "Complex composite UI components for the Acrobi Design System",
+  "author": "Brian Porter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acrobi/design-system",
+    "directory": "packages/composites"
+  },
+  "keywords": [
+    "acrobi",
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "composites"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "@acrobi/design-tokens": "workspace:^",
+    "@acrobi/design-primitives": "workspace:^"
+  },
+  "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.4",
+    "@radix-ui/react-dialog": "^1.1.4",
+    "@radix-ui/react-select": "^2.1.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.9.2"
+  }
+}
