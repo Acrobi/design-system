@@ -1,0 +1,74 @@
+{
+  "name": "@acrobi/design-primitives",
+  "version": "1.0.0",
+  "description": "Core primitive UI components for the Acrobi Design System",
+  "author": "Brian Porter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acrobi/design-system",
+    "directory": "packages/primitives"
+  },
+  "keywords": [
+    "acrobi",
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "primitives",
+    "button",
+    "input"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/button/index.esm.js",
+      "require": "./dist/button/index.js",
+      "types": "./dist/button/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "@acrobi/design-tokens": "workspace:^"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.9.2"
+  }
+}

@@ -116,6 +116,162 @@ importers:
         specifier: ^5.9.2
         version: 5.9.3
 
+  packages/design-system:
+    dependencies:
+      '@acrobi/design-icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@acrobi/design-primitives':
+        specifier: workspace:^
+        version: link:../primitives
+      '@acrobi/design-tokens':
+        specifier: workspace:^
+        version: link:../tokens
+      react:
+        specifier: '>=18.0.0'
+        version: 19.1.0
+      react-dom:
+        specifier: '>=18.0.0'
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^26.0.1
+        version: 26.0.3(rollup@4.52.4)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.3.1(rollup@4.52.4)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.5
+        version: 11.1.6(rollup@4.52.4)(tslib@2.8.1)(typescript@5.9.3)
+      '@types/react':
+        specifier: 19.1.2
+        version: 19.1.2
+      rollup:
+        specifier: ^4.22.4
+        version: 4.52.4
+      rollup-plugin-dts:
+        specifier: ^6.1.1
+        version: 6.2.3(rollup@4.52.4)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+
+  packages/icons:
+    dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-react:
+        specifier: '>=0.400.0'
+        version: 0.487.0(react@19.1.0)
+      react:
+        specifier: '>=18.0.0'
+        version: 19.1.0
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^26.0.1
+        version: 26.0.3(rollup@4.52.4)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.3.1(rollup@4.52.4)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.5
+        version: 11.1.6(rollup@4.52.4)(tslib@2.8.1)(typescript@5.9.3)
+      '@types/react':
+        specifier: 19.1.2
+        version: 19.1.2
+      rollup:
+        specifier: ^4.22.4
+        version: 4.52.4
+      rollup-plugin-dts:
+        specifier: ^6.1.1
+        version: 6.2.3(rollup@4.52.4)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+
+  packages/primitives:
+    dependencies:
+      '@acrobi/design-tokens':
+        specifier: workspace:^
+        version: link:../tokens
+      '@radix-ui/react-checkbox':
+        specifier: ^1.1.2
+        version: 1.3.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-label':
+        specifier: ^2.1.7
+        version: 2.1.7(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-slot':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-switch':
+        specifier: ^1.1.2
+        version: 1.2.6(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      react:
+        specifier: '>=18.0.0'
+        version: 19.1.0
+      react-dom:
+        specifier: '>=18.0.0'
+        version: 19.1.0(react@19.1.0)
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^26.0.1
+        version: 26.0.3(rollup@4.52.4)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.3.1(rollup@4.52.4)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.5
+        version: 11.1.6(rollup@4.52.4)(tslib@2.8.1)(typescript@5.9.3)
+      '@types/react':
+        specifier: 19.1.2
+        version: 19.1.2
+      '@types/react-dom':
+        specifier: 19.1.2
+        version: 19.1.2(@types/react@19.1.2)
+      rollup:
+        specifier: ^4.22.4
+        version: 4.52.4
+      rollup-plugin-dts:
+        specifier: ^6.1.1
+        version: 6.2.3(rollup@4.52.4)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+
+  packages/tokens:
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^26.0.1
+        version: 26.0.3(rollup@4.52.4)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.3.1(rollup@4.52.4)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.5
+        version: 11.1.6(rollup@4.52.4)(tslib@2.8.1)(typescript@5.9.3)
+      rollup:
+        specifier: ^4.22.4
+        version: 4.52.4
+      rollup-plugin-dts:
+        specifier: ^6.1.1
+        version: 6.2.3(rollup@4.52.4)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
@@ -686,6 +842,19 @@ packages:
   '@radix-ui/primitive@1.1.3':
     resolution: {integrity: sha512-JTF99U/6XIjCBo0wqkU5sK10glYe27MRRsfwoiq5zzOEZLHU3A3KCMa5X/azekYRCJ0HlwI0crAXS/5dEHTzDg==}
 
+  '@radix-ui/react-checkbox@1.3.3':
+    resolution: {integrity: sha512-wBbpv+NQftHDdG86Qc0pIyXk5IR3tM8Vd0nWLKDcX8nNn4nXFOFwsKuqw2okA/1D/mpaAkmuyndrPJTYDNZtFw==}
+    peerDependencies:
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-collection@1.1.7':
     resolution: {integrity: sha512-Fh9rGN0MoI4ZFUNyfFVNU4y9LUz93u9/0K+yLgA2bwRojxM8JU1DyvvMBabnZPBgMWREAJvU2jjVzq+LrFUglw==}
     peerDependencies:
@@ -796,6 +965,19 @@ packages:
       '@types/react':
         optional: true
 
+  '@radix-ui/react-switch@1.2.6':
+    resolution: {integrity: sha512-bByzr1+ep1zk4VubeEVViV592vu2lHE2BZY5OnzehZqOOgogN80+mNtCqPkhn2gklJqOpxWgPoYTSnhBCqpOXQ==}
+    peerDependencies:
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-tabs@1.1.13':
     resolution: {integrity: sha512-7xdcatg7/U+7+Udyoj2zodtI9H/IIopqo+YOIcZOq1nJwXWBZ9p8xiu5llXlekDbZkca79a/fozEYQXIA4sW6A==}
     peerDependencies:
@@ -838,6 +1020,24 @@ packages:
 
   '@radix-ui/react-use-layout-effect@1.1.1':
     resolution: {integrity: sha512-RbJRS4UWQFkzHTTwVymMTUv8EqYhOp8dOOviLj2ugtTiXRaRQS7GLGxZTLL1jWhMeoSCf5zmcZkqTl9IiYfXcQ==}
+    peerDependencies:
+      '@types/react': 19.1.2
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-previous@1.1.1':
+    resolution: {integrity: sha512-2dHfToCj/pzca2Ck724OZ5L0EVrr3eHRNsG/b3xQJLA2hZpVCS99bLAX+hm1IHXDEnzU6by5z/5MIY794/a8NQ==}
+    peerDependencies:
+      '@types/react': 19.1.2
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-size@1.1.1':
+    resolution: {integrity: sha512-ewrXRDTAqAXlkl6t/fkXWNAhFX9I+CkKlw6zjEwk86RSPKwZr3xpBRso655aqYafwtnbpHLj6toFzmd6xdVptQ==}
     peerDependencies:
       '@types/react': 19.1.2
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
@@ -4012,6 +4212,22 @@ snapshots:
 
   '@radix-ui/primitive@1.1.3': {}
 
+  '@radix-ui/react-checkbox@1.3.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.3
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-context': 1.1.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-presence': 1.1.5(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-primitive': 2.1.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-use-previous': 1.1.1(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-use-size': 1.1.1(@types/react@19.1.2)(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
+
   '@radix-ui/react-collection@1.1.7(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.2)(react@19.1.0)
@@ -4101,6 +4317,21 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.2
 
+  '@radix-ui/react-switch@1.2.6(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.3
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-context': 1.1.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-primitive': 2.1.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-use-previous': 1.1.1(@types/react@19.1.2)(react@19.1.0)
+      '@radix-ui/react-use-size': 1.1.1(@types/react@19.1.2)(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
+
   '@radix-ui/react-tabs@1.1.13(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/primitive': 1.1.3
@@ -4140,6 +4371,19 @@ snapshots:
 
   '@radix-ui/react-use-layout-effect@1.1.1(@types/react@19.1.2)(react@19.1.0)':
     dependencies:
+      react: 19.1.0
+    optionalDependencies:
+      '@types/react': 19.1.2
+
+  '@radix-ui/react-use-previous@1.1.1(@types/react@19.1.2)(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+    optionalDependencies:
+      '@types/react': 19.1.2
+
+  '@radix-ui/react-use-size@1.1.1(@types/react@19.1.2)(react@19.1.0)':
+    dependencies:
+      '@radix-ui/react-use-layout-effect': 1.1.1(@types/react@19.1.2)(react@19.1.0)
       react: 19.1.0
     optionalDependencies:
       '@types/react': 19.1.2
